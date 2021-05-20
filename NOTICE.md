@@ -1,6 +1,6 @@
 # OSS Notice | Travisor #
 
-This application is Copyright © Banryeo. All rights reserved.
+This application is Copyright © 2021 Banryeo. All rights reserved.
 
 The following sets forth attribution notices for third party software that may be contained in this application.
 

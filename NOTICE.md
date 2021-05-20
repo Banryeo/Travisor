@@ -1,4 +1,41 @@
+이 고지문은 주식회사 카카오의 Olive 서비스를 이용하여 작성되었습니다.
+고지문은 참고용으로만 제공되며, 카카오는 고지문의 내용, 신뢰도, 정확성 등에 대해 어떠한 보증도 하지 않습니다.
+Olive 와 고지문 사용에 따라 발생하는 모든 책임은 전적으로 사용자에게 있으며, 카카오는 사용자 또는 제3자에 대해 어떠한 책임도 지지 않습니다.
+
+
+# OSS Notice | Travisor #
+
+This application is Copyright © (owner name). All rights reserved.
+
+The following sets forth attribution notices for third party software that may be contained in this application.
+
+ **lombok**
+
+https://github.com/rzwitserloot/lombok
+
+Copyright 2009-2015 The Project Lombok Authors.
+
+MIT License
+
+ **MySQL Connector/J**
+
+https://github.com/mysql/mysql-connector-j
+
+Copyright 2016, Oracle Corporation and/or its affiliates
+
+Universal FOSS Exception 1.0
+
+ **Spring Boot**
+
+https://github.com/spring-projects/spring-boot
+
+Copyright 2012-2020 Pivotal, Inc.
+
 Apache License 2.0
+
+# Apache License 2.0 #
+
+``````````
 Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
@@ -72,3 +109,40 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+``````````
+
+# MIT License #
+
+``````````
+MIT License
+
+Copyright (c)  
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+``````````
+
+# Universal FOSS Exception 1.0 #
+
+``````````
+The Universal FOSS Exception, Version 1.0
+
+This page provides a copy of the Universal FOSS Exception, Version 1.0.  Here is the text:
+
+The Universal FOSS Exception, Version 1.0
+
+In addition to the rights set forth in the other license(s) included in the distribution for this software, data, and/or documentation (collectively the "Software," and such licenses collectively with this additional permission the "Software License"), the copyright holders wish to facilitate interoperability with other software, data, and/or documentation distributed with complete corresponding source under a license that is OSI-approved and/or categorized by the FSF as free (collectively "Other FOSS").  We therefore hereby grant the following additional permission with respect to the use and distribution of the Software with Other FOSS, and the constants, function signatures, data structures and other invocation methods used to run or interact with each of them (as to each, such software's "Interfaces"):
+
+(i) The Software's Interfaces may, to the extent permitted by the license of the Other FOSS, be copied into, used and distributed in the Other FOSS in order to enable interoperability, without requiring a change to the license of the Other FOSS other than as to any Interfaces of the Software embedded therein.  The Software's Interfaces remain at all times under the Software License, including without limitation as used in the Other FOSS (which upon any such use also then contains a portion of the Software under the Software License).
+
+(ii) The Other FOSS's Interfaces may, to the extent permitted by the license of the Other FOSS, be copied into, used and distributed in the Software in order to enable interoperability, without requiring that such Interfaces be licensed under the terms of the Software License or otherwise altering their original terms, if this does not require any portion of the Software other than such Interfaces to be licensed under the terms other than the Software License.
+
+(iii) If only Interfaces and no other code is copied between the Software and the Other FOSS in either direction, the use and/or distribution of the Software with the Other FOSS shall not be deemed to require that the Other FOSS be licensed under the license of the Software, other than as to any Interfaces of the Software copied into the Other FOSS.  This includes, by way of example and without limitation, statically or dynamically linking the Software together with Other FOSS after enabling interoperability using the Interfaces of one or both, and distributing the resulting combination under different licenses for the respective portions thereof.
+
+For avoidance of doubt, a license which is OSI-approved or categorized by the FSF as free, includes, for the purpose of this permission, such licenses with additional permissions, and any license that has previously been so-approved or categorized as free, even if now deprecated or otherwise no longer recognized as approved or free.  Nothing in this additional permission grants any right to distribute any portion of the Software on terms other than those of the Software License or grants any additional permission of any kind for use or distribution of the Software in conjunction with software other than Other FOSS.
+
+When referring to the exception, you may link to it here at http://oss.oracle.com/licenses/universal-foss-exception.
+``````````

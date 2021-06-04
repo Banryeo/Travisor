@@ -27,8 +27,9 @@ public class Service {
         String firstDay=days.get("PA1").toString();
         String afterDay=days.get("PA2").toString();
 
-        HashMap<String,Object> contexts =  (HashMap<String,Object>) params.get("contexts");
-        HashMap<String,Object>  param= (HashMap<String,Object>) contexts.get("params");
+        ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+        list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
+        HashMap<String,Object>  param= (HashMap<String,Object>) list.get(1).get("params");
         HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
         String  value=  contextpram.get("value").toString();
 

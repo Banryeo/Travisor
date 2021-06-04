@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@org.springframework.stereotype.Controller
 public class Controller {
 
     @Autowired

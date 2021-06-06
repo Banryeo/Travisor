@@ -8,6 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/repository/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/service/Service.java" afterDir="false" />
+      =======
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/jejunu/opensource/travisor/model/Model.java" afterDir="false" />
+      &gt;&gt;&gt;&gt;&gt;&gt;&gt; f9ac7d635b1070eca98ed1f2ca48452c4696f527
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

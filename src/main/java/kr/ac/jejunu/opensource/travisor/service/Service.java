@@ -24,19 +24,22 @@ public class Service {
 
         HashMap<String,Object> action =  (HashMap<String,Object>) params.get("action");
         HashMap<String,Object> days = (HashMap<String,Object>) action.get("params");
-        String firstDay=days.get("PA1").toString();
-        String afterDay=days.get("PA2").toString();
+        String firstDay=days.get("startDate").toString();
+        String afterDay=days.get("lateDate").toString();
+        String location=days.get("location").toString();
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-        HashMap<String,Object>  contexts=list.get(0);
-        HashMap<String,Object>  param= (HashMap<String,Object>) contexts.get("params");
-        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
-        String  value=  contextpram.get("value").toString();
+//        HashMap<String,Object>  contexts=list.get(0);
+//        HashMap<String,Object>  param= (HashMap<String,Object>) contexts.get("params");
+//        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
+//        String  value=  contextpram.get("value").toString();
 
 
 
-        System.out.println("첫날은"+firstDay+"둘쨋날은"+afterDay);
+        System.out.println("첫날은:"+firstDay+"둘쨋날은:"+afterDay+"여행 장소는: "+location);
+
+        System.out.println("context="+list);
         String rtnStr = "";
         switch (utter){
             case "뭐야" : rtnStr = "코딩32 챗봇입니다.";

@@ -1,5 +1,6 @@
 package kr.ac.jejunu.opensource.travisor.service;
 
+import kr.ac.jejunu.opensource.travisor.model.Model;
 import kr.ac.jejunu.opensource.travisor.repository.Repository;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -58,17 +59,17 @@ public class Service {
 
         System.out.println(startDateTime+"and"+endDateTime);
         System.out.println(repository.search(startDateTime,endDateTime).size());
+        List<Model> listItem = repository.search(startDateTime,endDateTime);
 
 
-
-        String rtnStr = "";
-        switch (utter){
-            case "뭐야" : rtnStr = "코딩32 챗봇입니다.";
-                break;
-            case "ㅋㅋ" : rtnStr = "저도 기분이 좋네요";
-                break;
-            default: rtnStr = "안녕하세요 코딩 32 챗봇입니다.";
-        }
+//        String rtnStr = "";
+//        switch (utter){
+//            case "뭐야" : rtnStr = "코딩32 챗봇입니다.";
+//                break;
+//            case "ㅋㅋ" : rtnStr = "저도 기분이 좋네요";
+//                break;
+//            default: rtnStr = "안녕하세요 코딩 32 챗봇입니다.";
+//        }
         /* 발화 처리 끝*/
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
@@ -76,7 +77,7 @@ public class Service {
         HashMap<String, Object> simpleText = new HashMap<>();
         HashMap<String, Object> text = new HashMap<>();
 
-        text.put("text",rtnStr);
+        text.put("text",listItem.toString());
         simpleText.put("simpleText",text);
         outputs.add(simpleText);
 

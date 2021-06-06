@@ -30,8 +30,8 @@ public class Service {
         JSONObject firstDayJson= (JSONObject) parser.parse(days.get("startDate").toString());
         JSONObject afterDayJson=(JSONObject) parser.parse(days.get("endDate").toString());;
 
-        String firstDay=firstDayJson.get("value").toString();
-        String afterDay=afterDayJson.get("value").toString();
+        String startDate=firstDayJson.get("value").toString();
+        String endDate=afterDayJson.get("value").toString();
         String location=days.get("location").toString();
 
 
@@ -44,14 +44,22 @@ public class Service {
 
 
 
-        System.out.println("첫날은:"+firstDay+"둘쨋날은:"+afterDay+"여행 장소는: "+location);
+        System.out.println("첫날은:"+startDate+"둘쨋날은:"+endDate+"여행 장소는: "+location);
 
         System.out.println("context="+name);
 
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date=format.parse(firstDay+" 00:00:00");
-        Long time=date.getTime()/1000;
-        System.out.println(time);
+        Date date=format.parse(startDate+" 00:00:00");
+        Long startDateTime=date.getTime()/1000;
+
+
+        date=format.parse(endDate+" 00:00:00");
+        Long endDateTime=date.getTime()/1000;
+
+        System.out.println(startDateTime+"and"+endDateTime);
+        System.out.println(repository.search(startDateTime,endDateTime).size());
+
+
 
         String rtnStr = "";
         switch (utter){

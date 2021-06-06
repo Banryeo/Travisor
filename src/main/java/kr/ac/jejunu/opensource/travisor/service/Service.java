@@ -34,8 +34,8 @@ public class Service {
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-//        HashMap<String,Object>  contexts=list.get(0);
-//        HashMap<String,Object>  param= (HashMap<String,Object>) contexts.get("params");
+        HashMap<String,Object>  contexts=list.get(0);
+        String name= contexts.get("name").toString();
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
 //        String  value=  contextpram.get("value").toString();
 
@@ -43,7 +43,7 @@ public class Service {
 
         System.out.println("첫날은:"+firstDay+"둘쨋날은:"+afterDay+"여행 장소는: "+location);
 
-        System.out.println("context="+list);
+        System.out.println("context="+name);
         String rtnStr = "";
         switch (utter){
             case "뭐야" : rtnStr = "코딩32 챗봇입니다.";

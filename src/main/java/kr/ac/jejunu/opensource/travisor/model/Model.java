@@ -16,6 +16,10 @@ public class Model {
 
     @Column
     @NotNull
+    private String name;
+
+    @Column
+    @NotNull
     private String cultureName;
 
     @Column

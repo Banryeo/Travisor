@@ -2,6 +2,7 @@ package kr.ac.jejunu.opensource.travisor.model;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
@@ -25,10 +26,12 @@ public class Model {
 
     @Column
     @NotNull
+    @CreationTimestamp
     private Timestamp startDate;
 
     @Column
     @NotNull
+    @CreationTimestamp
     private Timestamp endDate;
 
     @Column

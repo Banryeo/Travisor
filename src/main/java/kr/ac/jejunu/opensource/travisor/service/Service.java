@@ -87,4 +87,40 @@ public class Service {
         resultJson.put("template",template);
         return resultJson;
     }
+
+    public void addItem(String itemTitle, String itemDescription,
+                                          String itemImageUrl, String itemMessage, String itemWebUrl){
+
+        HashMap<String, Object> title = new HashMap<>();
+        HashMap<String, Object> description = new HashMap<>();
+        HashMap<String, Object> thumbnail = new HashMap<>();
+        HashMap<String, Object> imageUrl = new HashMap<>();
+
+        List<Object[]> buttons = new ArrayList<>();
+        HashMap<String, Object> action1 = new HashMap<>();
+        HashMap<String, Object> label1 = new HashMap<>();
+        HashMap<String, Object> messageText = new HashMap<>();
+
+
+        HashMap<String, Object> action2 = new HashMap<>();
+        HashMap<String, Object> label2 = new HashMap<>();
+        HashMap<String, Object> webLinkUrl = new HashMap<>();
+
+
+        title.put("title", itemTitle);
+        description.put("description", itemDescription);
+        imageUrl.put("imageUrl", itemImageUrl);
+        thumbnail.put("thumbnail",imageUrl);
+
+
+        action1.put("action", "message");
+        label1.put("label", "열어보기");
+        messageText.put("messageText", itemMessage);
+
+        action2.put("action", "webLink");
+        label2.put("label", "구경하기");
+        webLinkUrl.put("webLinkUrl", itemWebUrl);
+
+    }
+
 }

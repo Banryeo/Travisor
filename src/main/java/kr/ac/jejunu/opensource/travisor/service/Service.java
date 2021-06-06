@@ -1,6 +1,9 @@
 package kr.ac.jejunu.opensource.travisor.service;
 
 import kr.ac.jejunu.opensource.travisor.repository.Repository;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +19,7 @@ public class Service {
     Repository repository;
 
     @Transactional
-    public HashMap<String, Object> getInfo(Map<String, Object> params) {
+    public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException {
 
         HashMap<String, Object> resultJson = new HashMap<>();
         HashMap<String,Object> userRequest =  (HashMap<String,Object>) params.get("userRequest");
@@ -24,11 +27,12 @@ public class Service {
 
         HashMap<String,Object> action =  (HashMap<String,Object>) params.get("action");
         HashMap<String,Object> days = (HashMap<String,Object>) action.get("params");
-        HashMap<String,Object> firstDayMap=(HashMap<String,Object>)days.get("startDate");
-        HashMap<String,Object> afterDayMap=(HashMap<String,Object>)days.get("lateDate");
+        JSONParser parser=new JSONParser();
+        JSONObject firstDayJson= (JSONObject) parser.parse(days.get("startDate").toString());
+        JSONObject afterDayJson=(JSONObject) parser.parse(days.get("lateDate").toString());;
 
-        String firstDay=firstDayMap.get("date").toString();
-        String afterDay=afterDayMap.get("date").toString();
+        String firstDay=firstDayJson.get("date").toString();
+        String afterDay=afterDayJson.get("date").toString();
         String location=days.get("location").toString();
 
 

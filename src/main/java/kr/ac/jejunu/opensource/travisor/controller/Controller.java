@@ -4,6 +4,7 @@ package kr.ac.jejunu.opensource.travisor.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import kr.ac.jejunu.opensource.travisor.service.Service;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class Controller {
 
     @ResponseBody
     @PostMapping("/test")
-    public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+    public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException {
         System.out.println(params);
         System.out.println("------------------------------------------------------------------------------");
         HashMap<String, Object> resultJson = service.getInfo(params);

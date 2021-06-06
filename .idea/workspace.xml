@@ -86,13 +86,23 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.TravisorApplication">
+<<<<<<< HEAD
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+=======
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+>>>>>>> 90e811d0e395407ac01f5611ab4c82df492fa414
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+<<<<<<< HEAD
       <option name="TEST_OBJECT" value="class" />
+=======
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+>>>>>>> 90e811d0e395407ac01f5611ab4c82df492fa414
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -7,10 +7,9 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -19,7 +18,7 @@ public class Service {
     Repository repository;
 
     @Transactional
-    public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException {
+    public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException, java.text.ParseException {
 
         HashMap<String, Object> resultJson = new HashMap<>();
         HashMap<String,Object> userRequest =  (HashMap<String,Object>) params.get("userRequest");
@@ -29,10 +28,10 @@ public class Service {
         HashMap<String,Object> days = (HashMap<String,Object>) action.get("params");
         JSONParser parser=new JSONParser();
         JSONObject firstDayJson= (JSONObject) parser.parse(days.get("startDate").toString());
-        JSONObject afterDayJson=(JSONObject) parser.parse(days.get("lateDate").toString());;
+        JSONObject afterDayJson=(JSONObject) parser.parse(days.get("endDate").toString());;
 
-        String firstDay=firstDayJson.get("date").toString();
-        String afterDay=afterDayJson.get("date").toString();
+        String firstDay=firstDayJson.get("value").toString();
+        String afterDay=afterDayJson.get("value").toString();
         String location=days.get("location").toString();
 
 
@@ -48,6 +47,12 @@ public class Service {
         System.out.println("첫날은:"+firstDay+"둘쨋날은:"+afterDay+"여행 장소는: "+location);
 
         System.out.println("context="+name);
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date=format.parse(firstDay+" 00:00:00");
+        Long time=date.getTime()/1000;
+        System.out.println(time);
+
         String rtnStr = "";
         switch (utter){
             case "뭐야" : rtnStr = "코딩32 챗봇입니다.";

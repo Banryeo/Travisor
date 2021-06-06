@@ -24,9 +24,13 @@ public class Service {
 
         HashMap<String,Object> action =  (HashMap<String,Object>) params.get("action");
         HashMap<String,Object> days = (HashMap<String,Object>) action.get("params");
-        String firstDay=days.get("startDate").toString();
-        String afterDay=days.get("lateDate").toString();
+        HashMap<String,Object> firstDayMap=(HashMap<String,Object>)days.get("startDate");
+        HashMap<String,Object> afterDayMap=(HashMap<String,Object>)days.get("lateDate");
+
+        String firstDay=firstDayMap.get("date").toString();
+        String afterDay=afterDayMap.get("date").toString();
         String location=days.get("location").toString();
+
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");

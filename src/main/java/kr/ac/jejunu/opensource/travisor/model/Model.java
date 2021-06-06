@@ -36,7 +36,7 @@ public class Model {
 
     @Column
     @NotNull
-    private String description;
+    private String explanation;
 
 
 

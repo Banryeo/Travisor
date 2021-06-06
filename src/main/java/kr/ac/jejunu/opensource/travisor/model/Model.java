@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -24,11 +25,11 @@ public class Model {
 
     @Column
     @NotNull
-    private String startDate;
+    private Timestamp startDate;
 
     @Column
     @NotNull
-    private String endDate;
+    private Timestamp endDate;
 
     @Column
     @NotNull

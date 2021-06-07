@@ -74,12 +74,22 @@ public class Service {
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
-        HashMap<String, Object> simpleText = new HashMap<>();
-        HashMap<String, Object> text = new HashMap<>();
+        HashMap<String,Object> carousel = new HashMap<>();
+        HashMap<String,Object> type = new HashMap<>();
+        List<HashMap<String,Object>> items = new ArrayList<>();
 
-        text.put("text",listItem.toString());
-        simpleText.put("simpleText",text);
-        outputs.add(simpleText);
+
+        HashMap<String,Object> item = addItem("1","2","3",
+                "4","5");
+        items.add(item);//item이 많을 경우 넣어 줘야함
+        items.add(item);
+
+        type.put("type", "basicCard");
+        type.put("items", items);
+
+        carousel.put("carousel", type);
+
+        outputs.add(carousel);
 
         template.put("outputs",outputs);
 

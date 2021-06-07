@@ -42,6 +42,10 @@ public class Model {
     @NotNull
     private String explanation;
 
+    @Column
+    @NotNull
+    private String imageUrl;
+
 
 
 }

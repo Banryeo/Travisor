@@ -62,16 +62,6 @@ public class Service {
         List<Model> listItem = repository.search(startDateTime,endDateTime);
 
 
-//        String rtnStr = "";
-//        switch (utter){
-//            case "뭐야" : rtnStr = "코딩32 챗봇입니다.";
-//                break;
-//            case "ㅋㅋ" : rtnStr = "저도 기분이 좋네요";
-//                break;
-//            default: rtnStr = "안녕하세요 코딩 32 챗봇입니다.";
-//        }
-        /* 발화 처리 끝*/
-
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
         HashMap<String,Object> carousel = new HashMap<>();
@@ -79,10 +69,12 @@ public class Service {
         List<HashMap<String,Object>> items = new ArrayList<>();
 
 
-        HashMap<String,Object> item = addItem("1","2","3",
-                "4","5");
-        items.add(item);//item이 많을 경우 넣어 줘야함
-        items.add(item);
+        for(int i=0; i<listItem.size(); i++){
+            HashMap<String,Object> item = addItem(listItem.get(i).getCultureName(),
+                    listItem.get(i).getExplanation(), listItem.get(i).getImageUrl(),
+                    listItem.get(i).getCulture(), "https://www.naver.com/");
+            items.add(item);
+        }
 
         type.put("type", "basicCard");
         type.put("items", items);

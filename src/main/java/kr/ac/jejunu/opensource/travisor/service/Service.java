@@ -91,35 +91,28 @@ public class Service {
     public void addItem(String itemTitle, String itemDescription,
                                           String itemImageUrl, String itemMessage, String itemWebUrl){
 
-        HashMap<String, Object> title = new HashMap<>();
-        HashMap<String, Object> description = new HashMap<>();
-        HashMap<String, Object> thumbnail = new HashMap<>();
+        HashMap<String, Object> group1 = new HashMap<>();
         HashMap<String, Object> imageUrl = new HashMap<>();
+        List<HashMap<String, Object>> buttons = new ArrayList<>();
+        HashMap<String, Object> group2 = new HashMap<>();
+        HashMap<String, Object> group3= new HashMap<>();
+        
+        group2.put("action", "message");
+        group2.put("label", "열어보기");
+        group2.put("messageText", itemMessage);
 
-        List<Object[]> buttons = new ArrayList<>();
-        HashMap<String, Object> action1 = new HashMap<>();
-        HashMap<String, Object> label1 = new HashMap<>();
-        HashMap<String, Object> messageText = new HashMap<>();
+        group3.put("action", "webLink");
+        group3.put("label", "구경하기");
+        group3.put("webLinkUrl", itemWebUrl);
 
+        buttons.add(group2);
+        buttons.add(group3);
 
-        HashMap<String, Object> action2 = new HashMap<>();
-        HashMap<String, Object> label2 = new HashMap<>();
-        HashMap<String, Object> webLinkUrl = new HashMap<>();
-
-
-        title.put("title", itemTitle);
-        description.put("description", itemDescription);
+        group1.put("title", itemTitle);
+        group1.put("description", itemDescription);
         imageUrl.put("imageUrl", itemImageUrl);
-        thumbnail.put("thumbnail",imageUrl);
-
-
-        action1.put("action", "message");
-        label1.put("label", "열어보기");
-        messageText.put("messageText", itemMessage);
-
-        action2.put("action", "webLink");
-        label2.put("label", "구경하기");
-        webLinkUrl.put("webLinkUrl", itemWebUrl);
+        group1.put("thumbnail",imageUrl);
+        group1.put("buttons", buttons);
 
     }
 

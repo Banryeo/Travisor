@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @org.springframework.stereotype.Controller
@@ -25,8 +22,15 @@ public class Controller {
     @ResponseBody
     @PostMapping("/test")
     public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException, java.text.ParseException {
-        System.out.println(params);
-        System.out.println("------------------------------------------------------------------------------");
+        Enumeration param = request.getParameterNames();
+        System.out.println("----------------------------");
+        while (param.hasMoreElements()){
+            String name = (String)param.nextElement();
+            System.out.println(name + " : " +request.getParameter(name));
+        }
+        System.out.println("----------------------------");
+        //        System.out.println(params);
+//        System.out.println("------------------------------------------------------------------------------");
         HashMap<String, Object> resultJson = service.getInfo(params);
         return resultJson;
     }

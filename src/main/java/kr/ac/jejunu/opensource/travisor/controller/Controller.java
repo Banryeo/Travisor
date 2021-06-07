@@ -28,11 +28,11 @@ public class Controller {
             String name = (String)param.nextElement();
             System.out.println(name + " : " +request.getParameter(name));
         }
-        System.out.println("----------------------------");
-        //        System.out.println(params);
-//        System.out.println("------------------------------------------------------------------------------");
-        HashMap<String, Object> resultJson = service.getInfo(params);
-        return resultJson;
+//        System.out.println("----------------------------");
+//        //        System.out.println(params);
+////        System.out.println("------------------------------------------------------------------------------");
+//        HashMap<String, Object> resultJson = service.getInfo(params);
+        return null;
     }
 
     @PostMapping("/test/v1")

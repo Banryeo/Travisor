@@ -22,17 +22,11 @@ public class Controller {
     @ResponseBody
     @PostMapping("/test")
     public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException, java.text.ParseException {
-        Enumeration param = request.getParameterNames();
-        System.out.println("----------------------------");
-        while (param.hasMoreElements()){
-            String name = (String)param.nextElement();
-            System.out.println(name + " : " +request.getParameter(name));
-        }
-//        System.out.println("----------------------------");
-//        //        System.out.println(params);
-////        System.out.println("------------------------------------------------------------------------------");
-//        HashMap<String, Object> resultJson = service.getInfo(params);
-        return null;
+
+        System.out.println(params);
+        System.out.println("------------------------------------------------------------------------------");
+        HashMap<String, Object> resultJson = service.getInfo(params);
+        return resultJson;
     }
 
     @PostMapping("/test/v1")

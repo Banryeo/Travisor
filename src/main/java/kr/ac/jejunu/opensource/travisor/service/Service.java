@@ -88,7 +88,7 @@ public class Service {
         return resultJson;
     }
 
-    public void addItem(String itemTitle, String itemDescription,
+    public HashMap<String, Object> addItem(String itemTitle, String itemDescription,
                                           String itemImageUrl, String itemMessage, String itemWebUrl){
 
         HashMap<String, Object> group1 = new HashMap<>();
@@ -96,7 +96,7 @@ public class Service {
         List<HashMap<String, Object>> buttons = new ArrayList<>();
         HashMap<String, Object> group2 = new HashMap<>();
         HashMap<String, Object> group3= new HashMap<>();
-        
+
         group2.put("action", "message");
         group2.put("label", "열어보기");
         group2.put("messageText", itemMessage);
@@ -113,7 +113,7 @@ public class Service {
         imageUrl.put("imageUrl", itemImageUrl);
         group1.put("thumbnail",imageUrl);
         group1.put("buttons", buttons);
-
+        return group1;
     }
 
 }

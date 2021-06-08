@@ -76,21 +76,21 @@ public class Service {
         ArrayList<Model> selectList=new ArrayList<>();
         switch (location){
             case "북쪽":
-                Collections.sort(listItem,new LocationComparator("제주시"));
+//                Collections.sort(listItem,new LocationComparator("제주시"));
                for(int i=0;i<listItem.size();i++){
-                   if(!listItem.get(i).getLocation().contains("제주시")){
-                       break;
+                   if(listItem.get(i).getLocation().contains("제주시")){
+                       selectList.add(listItem.get(i));
                    }
-                   selectList.add(listItem.get(i));
+//                   selectList.add(listItem.get(i));
                }
                 break;
             case "남쪽":
-                Collections.sort(listItem,new LocationComparator("서귀포시"));
+//                Collections.sort(listItem,new LocationComparator("서귀포시"));
                 for(int i=0;i<listItem.size();i++){
-                    if(!listItem.get(i).getLocation().contains("서귀포시")){
-                        break;
+                    if(listItem.get(i).getLocation().contains("서귀포시")){
+                        selectList.add(listItem.get(i));
                     }
-                    selectList.add(listItem.get(i));
+                    
                 }
                 break;
             case "동쪽":

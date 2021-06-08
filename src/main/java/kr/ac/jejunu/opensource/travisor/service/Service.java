@@ -1,5 +1,7 @@
 package kr.ac.jejunu.opensource.travisor.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.ac.jejunu.opensource.travisor.model.Model;
 import kr.ac.jejunu.opensource.travisor.repository.Repository;
 import org.json.simple.JSONObject;
@@ -8,9 +10,16 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -19,7 +28,7 @@ public class Service {
     Repository repository;
 
     @Transactional
-    public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException, java.text.ParseException {
+    public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException, java.text.ParseException, JsonProcessingException {
 
         HashMap<String, Object> resultJson = new HashMap<>();
         HashMap<String,Object> userRequest =  (HashMap<String,Object>) params.get("userRequest");
@@ -49,6 +58,8 @@ public class Service {
 
         System.out.println("context="+name);
 
+
+
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=format.parse(startDate+" 00:00:00");
         Long startDateTime=date.getTime()/1000;
@@ -60,7 +71,41 @@ public class Service {
         System.out.println(startDateTime+"and"+endDateTime);
         System.out.println(repository.search(startDateTime,endDateTime).size());
         List<Model> listItem = repository.search(startDateTime,endDateTime);
+//        List<Model> listItem = repository.findAll();
 
+        ArrayList<Model> selectList=new ArrayList<>();
+        switch (location){
+            case "북쪽":
+               for(int i=0;i<listItem.size();i++){
+                   if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lat").toString())>33.3457497859576){
+                       selectList.add(listItem.get(i));
+                   }
+
+               }
+                break;
+            case "남쪽":
+                for(int i=0;i<listItem.size();i++) {
+                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lat").toString()) < 33.3457497859576) {
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+            case "동쪽":
+                for(int i=0;i<listItem.size();i++){
+                    if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString())>126.524841479094){
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+            case "서쪽":
+                for(int i=0;i<listItem.size();i++) {
+                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+        }
+        System.out.println(selectList);
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
@@ -87,6 +132,10 @@ public class Service {
 
         resultJson.put("version","2.0");
         resultJson.put("template",template);
+
+
+        //아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
+        //getLonAndLat(getKakaoApiGeocoding());
         return resultJson;
     }
 
@@ -116,6 +165,57 @@ public class Service {
         group1.put("thumbnail",imageUrl);
         group1.put("buttons", buttons);
         return group1;
+    }
+
+    public String getKakaoApiGeocoding(String query) {
+        String apiKey = "da584fb56166b922cf227ce5be613b37";
+        String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
+        String jsonString = null;
+
+        try {
+            query = URLEncoder.encode(query, "UTF-8");
+
+            String addr = apiUrl + "?query=" + query;
+
+            URL url = new URL(addr);
+            URLConnection conn = url.openConnection();
+            conn.setRequestProperty("Authorization", "KakaoAK " + apiKey);
+
+            BufferedReader rd = null;
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            StringBuffer docJson = new StringBuffer();
+
+            String line;
+
+            while ((line=rd.readLine()) != null) {
+                docJson.append(line);
+            }
+
+            jsonString = docJson.toString();
+            rd.close();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
+    }
+
+    public HashMap<String, Object> getLonAndLat(String geocodingString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        HashMap<String, Object> mappingData=new HashMap<>();
+        HashMap<String, Object> lonandlat = new HashMap<>();
+        ArrayList <HashMap<String,Object>> documents = new ArrayList<>();
+
+
+        mappingData = mapper.readValue(geocodingString, HashMap.class);
+        documents= (ArrayList<HashMap<String,Object>>) mappingData.get("documents");
+        lonandlat.put("lon",documents.get(0).get("x"));
+        lonandlat.put("lat",documents.get(0).get("y"));
+        return lonandlat;
     }
 
 }

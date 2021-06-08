@@ -109,7 +109,8 @@ public class Service {
         for(int i=0; i<selectList.size(); i++){
             HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
-                    selectList.get(i).getCulture(), "https://www.naver.com/");
+                    selectList.get(i).getCulture(), "https://www.naver.com/",
+                    selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
             items.add(item);
         }
 
@@ -132,7 +133,8 @@ public class Service {
     }
 
     public HashMap<String, Object> addItem(String itemTitle, String itemDescription,
-                                          String itemImageUrl, String itemMessage, String itemWebUrl){
+                                          String itemImageUrl, String itemMessage, String itemWebUrl,
+                                           String startDate, String endDate){
 
         HashMap<String, Object> group1 = new HashMap<>();
         HashMap<String, Object> imageUrl = new HashMap<>();
@@ -151,7 +153,7 @@ public class Service {
         buttons.add(group2);
         buttons.add(group3);
 
-        group1.put("title", itemTitle);
+        group1.put("title", itemTitle+"["+startDate+"]"+"["+endDate+"]");
         group1.put("description", itemDescription);
         imageUrl.put("imageUrl", itemImageUrl);
         group1.put("thumbnail",imageUrl);

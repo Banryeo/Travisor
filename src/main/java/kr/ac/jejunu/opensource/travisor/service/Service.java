@@ -71,23 +71,26 @@ public class Service {
         System.out.println(startDateTime+"and"+endDateTime);
         System.out.println(repository.search(startDateTime,endDateTime).size());
         List<Model> listItem = repository.search(startDateTime,endDateTime);
-//        List<Model> listItem = repository.findAll();
+        //List<Model> listItem = repository.findAll();
 
         ArrayList<Model> selectList=new ArrayList<>();
         switch (location){
             case "북쪽":
+                Collections.sort(listItem,new LocationComparator("제주시"));
                for(int i=0;i<listItem.size();i++){
-                   if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lat").toString())>33.3457497859576){
-                       selectList.add(listItem.get(i));
+                   if(!listItem.get(i).getLocation().contains("제주시")){
+                       break;
                    }
-
+                   selectList.add(listItem.get(i));
                }
                 break;
             case "남쪽":
-                for(int i=0;i<listItem.size();i++) {
-                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lat").toString()) < 33.3457497859576) {
-                        selectList.add(listItem.get(i));
+                Collections.sort(listItem,new LocationComparator("서귀포시"));
+                for(int i=0;i<listItem.size();i++){
+                    if(!listItem.get(i).getLocation().contains("서귀포시")){
+                        break;
                     }
+                    selectList.add(listItem.get(i));
                 }
                 break;
             case "동쪽":
@@ -218,4 +221,21 @@ public class Service {
         return lonandlat;
     }
 
+}
+
+class LocationComparator implements Comparator<Model>{
+
+    private String word;
+
+    public LocationComparator(String word){
+        System.out.println(word);
+        this.word=word;
+    }
+
+
+    @Override
+    public int compare(Model o1, Model o2) {
+        if(o1.getLocation().contains(word)) return -1;
+        return 0;
+    }
 }

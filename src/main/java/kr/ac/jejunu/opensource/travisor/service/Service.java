@@ -108,7 +108,6 @@ public class Service {
                 }
                 break;
         }
-        System.out.println(selectList);
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
@@ -117,10 +116,10 @@ public class Service {
         List<HashMap<String,Object>> items = new ArrayList<>();
 
 
-        for(int i=0; i<listItem.size(); i++){
-            HashMap<String,Object> item = addItem(listItem.get(i).getCultureName(),
-                    listItem.get(i).getExplanation(), listItem.get(i).getImageUrl(),
-                    listItem.get(i).getCulture(), "https://www.naver.com/");
+        for(int i=0; i<selectList.size(); i++){
+            HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
+                    selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
+                    selectList.get(i).getCulture(), "https://www.naver.com/");
             items.add(item);
         }
 

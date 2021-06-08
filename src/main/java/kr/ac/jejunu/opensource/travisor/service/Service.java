@@ -67,11 +67,8 @@ public class Service {
 
         date=format.parse(endDate+" 00:00:00");
         Long endDateTime=date.getTime()/1000;
-
-        System.out.println(startDateTime+"and"+endDateTime);
-        System.out.println(repository.search(startDateTime,endDateTime).size());
+        
         List<Model> listItem = repository.search(startDateTime,endDateTime);
-        //List<Model> listItem = repository.findAll();
 
         ArrayList<Model> selectList=new ArrayList<>();
         switch (location){

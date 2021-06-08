@@ -22,9 +22,6 @@ public class Controller {
     @ResponseBody
     @PostMapping("/test")
     public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException, java.text.ParseException {
-
-        System.out.println(params);
-        System.out.println("------------------------------------------------------------------------------");
         HashMap<String, Object> resultJson = service.getInfo(params);
         return resultJson;
     }

@@ -53,13 +53,6 @@ public class Service {
 //        String  value=  contextpram.get("value").toString();
 
 
-
-        System.out.println("첫날은:"+startDate+"둘쨋날은:"+endDate+"여행 장소는: "+location);
-
-        System.out.println("context="+name);
-
-
-
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=format.parse(startDate+" 00:00:00");
         Long startDateTime=date.getTime()/1000;
@@ -67,7 +60,7 @@ public class Service {
 
         date=format.parse(endDate+" 00:00:00");
         Long endDateTime=date.getTime()/1000;
-        
+
         List<Model> listItem = repository.search(startDateTime,endDateTime);
 
         ArrayList<Model> selectList=new ArrayList<>();
@@ -224,7 +217,6 @@ class LocationComparator implements Comparator<Model>{
     private String word;
 
     public LocationComparator(String word){
-        System.out.println(word);
         this.word=word;
     }
 

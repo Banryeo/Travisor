@@ -31,7 +31,6 @@ public class Service {
     @Transactional
     public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException, java.text.ParseException, JsonProcessingException {
 
-        HashMap<String, Object> resultJson = new HashMap<>();
         HashMap<String,Object> userRequest=new HashMap<>();
         HashMap<String,Object> days=new HashMap<>();
 
@@ -81,6 +80,16 @@ public class Service {
         ArrayList<Model> selectList =new ArrayList<>();
         getLocation(location, listItem,selectList);
 
+        HashMap<String, Object> resultJson = carouselResponse(selectList);
+
+//
+//        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
+//        getLonAndLat(getKakaoApiGeocoding());
+        return resultJson;
+    }
+
+    private HashMap<String, Object> carouselResponse(ArrayList<Model> selectList) {
+        HashMap<String, Object> resultJson = new HashMap<>();
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
         HashMap<String,Object> carousel = new HashMap<>();
@@ -88,7 +97,7 @@ public class Service {
         List<HashMap<String,Object>> items = new ArrayList<>();
 
 
-        for(int i=0; i<selectList.size(); i++){
+        for(int i = 0; i< selectList.size(); i++){
             HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
                     selectList.get(i).getExplanation(), "https://www.naver.com/",
@@ -107,10 +116,6 @@ public class Service {
 
         resultJson.put("version","2.0");
         resultJson.put("template",template);
-
-//
-//        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
-//        getLonAndLat(getKakaoApiGeocoding());
         return resultJson;
     }
 

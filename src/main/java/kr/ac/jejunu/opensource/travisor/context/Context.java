@@ -35,7 +35,7 @@ public class Context {
         for (int i = 0; i < selectList.size(); i++) {
             HashMap<String, Object> item = addItem(selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
-                    selectList.get(i).getExplanation(), "https://www.naver.com/",
+                    selectList.get(i).getExplanation(), "http://3.35.24.12/test/tests",
                     selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
             items.add(item);
         }
@@ -146,7 +146,7 @@ public class Context {
 
         group3.put("action", "webLink");
         group3.put("label", "구경하기");
-        //group3.put("webLinkUrl", itemWebUrl);
+        group3.put("webLinkUrl", itemWebUrl);
 
         buttons.add(group2);
         buttons.add(group3);

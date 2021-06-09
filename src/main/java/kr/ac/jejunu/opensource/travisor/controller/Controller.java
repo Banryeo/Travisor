@@ -23,6 +23,7 @@ public class Controller {
     @Autowired
     public Context context;
 
+
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public HashMap<String,Object> nullData(){
@@ -47,6 +48,13 @@ public class Controller {
     @PostMapping("/test/help")
     public HashMap<String,Object> help() {
         HashMap<String, Object> resultJson = service.getHelp();
+        return resultJson;
+    }
+
+    @ResponseBody
+    @PostMapping("/test/tests")
+    public HashMap<String,Object> tests() {
+        HashMap<String, Object> resultJson = context.simpleMessage("test!!");
         return resultJson;
     }
 

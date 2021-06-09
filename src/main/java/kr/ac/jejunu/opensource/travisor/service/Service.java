@@ -119,7 +119,7 @@ public class Service {
         for(int i=0; i<selectList.size(); i++){
             HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
-                    selectList.get(i).getCulture(), "https://www.naver.com/",
+                    selectList.get(i).getExplanation(), "https://www.naver.com/",
                     selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
             items.add(item);
         }
@@ -154,7 +154,7 @@ public class Service {
 
         group2.put("action", "message");
         group2.put("label", "열어보기");
-        group2.put("messageText", itemMessage);
+        group2.put("messageText", ""+itemMessage);
 
         group3.put("action", "webLink");
         group3.put("label", "구경하기");

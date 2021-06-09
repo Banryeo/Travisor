@@ -164,14 +164,14 @@ public class Service {
         buttons.add(group3);
 
         group1.put("title", itemTitle);
-        group1.put("description", "["+startDate+"]"+"["+endDate+"]");
+        group1.put("description", "["+startDate+"]"+"~"+"["+endDate+"]");
         imageUrl.put("imageUrl", itemImageUrl);
         group1.put("thumbnail",imageUrl);
         group1.put("buttons", buttons);
         return group1;
     }
 
-    public HashMap<String, Object> errorMessage(String rtnStr){
+    public HashMap<String, Object> simpleMessage(String rtnStr){
         HashMap<String, Object> resultJson = new HashMap<>();
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();

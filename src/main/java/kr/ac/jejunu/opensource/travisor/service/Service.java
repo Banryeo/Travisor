@@ -47,7 +47,6 @@ public class Service {
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-        System.out.println(list);
         HashMap<String,Object>  contexts=list.get(0);
         String name= contexts.get("name").toString();
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
@@ -61,6 +60,7 @@ public class Service {
 
         date=format.parse(endDate+" 00:00:00");
         Long endDateTime=date.getTime()/1000;
+        System.out.println("날짜 데이터"+startDateTime+"\n"+endDateTime);
 
         List<Model> listItem = repository.search(startDateTime,endDateTime);
 

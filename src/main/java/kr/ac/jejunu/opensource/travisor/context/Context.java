@@ -147,6 +147,7 @@ public class Context {
         group3.put("action", "message");
         group3.put("label", "구경하기");
         group3.put("messageText", "짜잔! 우리가 찾던 보물입니다");
+        group3.put("extra", group2);
        // group3.put("webLinkUrl", itemWebUrl);
 
         buttons.add(group2);

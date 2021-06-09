@@ -162,6 +162,25 @@ public class Service {
         return group1;
     }
 
+    public HashMap<String, Object> errorMessage(String rtnStr){
+        HashMap<String, Object> resultJson = new HashMap<>();
+        List<HashMap<String,Object>> outputs = new ArrayList<>();
+        HashMap<String,Object> template = new HashMap<>();
+        HashMap<String, Object> simpleText = new HashMap<>();
+        HashMap<String, Object> text = new HashMap<>();
+
+        text.put("text",rtnStr);
+        simpleText.put("simpleText",text);
+        outputs.add(simpleText);
+
+        template.put("outputs",outputs);
+
+        resultJson.put("version","2.0");
+        resultJson.put("template",template);
+        return resultJson;
+    }
+
+
     public String getKakaoApiGeocoding(String query) {
         String apiKey = "da584fb56166b922cf227ce5be613b37";
         String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";

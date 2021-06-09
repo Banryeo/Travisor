@@ -48,8 +48,6 @@ public class Service {
         String culture=null;
 
 
-
-
         userRequest =  (HashMap<String,Object>) params.get("userRequest");
         utter = userRequest.get("utterance").toString().replace("\n","");
 
@@ -80,7 +78,8 @@ public class Service {
             throw new IllegalArgumentException(culture+" 정보가 없습니다.");
         }
 
-        ArrayList<Model> selectList = getLocation(location, listItem);
+        ArrayList<Model> selectList =new ArrayList<>();
+        getLocation(location, listItem,selectList);
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
@@ -122,8 +121,7 @@ public class Service {
         return date.getTime() / 1000;
     }
 
-    private ArrayList<Model> getLocation(String location, List<Model> listItem) throws JsonProcessingException {
-        ArrayList<Model> selectList=new ArrayList<>();
+    private ArrayList<Model> getLocation(String location, List<Model> listItem,ArrayList<Model> selectList) throws JsonProcessingException {
         switch (location){
             case "북쪽":
                 Collections.sort(listItem,new LocationComparator("제주시"));

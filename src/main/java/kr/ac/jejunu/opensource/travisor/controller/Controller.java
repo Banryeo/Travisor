@@ -54,7 +54,7 @@ public class Controller {
     @PostMapping("/test/v1")
     public JSONObject testV1(@RequestBody JSONObject jsonObject){
         System.out.println(jsonObject.toString());
-        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------");
         return jsonObject;
     }
 }

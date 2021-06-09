@@ -12,13 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
-
+@ControllerAdvice
 @org.springframework.stereotype.Controller
 public class Controller {
 
     @Autowired
-    Service service;
+    public Service service;
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public HashMap<String,Object> nullData(final IllegalArgumentException ex){
+        return null;
+    }
     @ResponseBody
     @PostMapping("/test")
     public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException, java.text.ParseException {
@@ -27,7 +31,7 @@ public class Controller {
         return resultJson;
     }
 
-    @PostMapping("/help")
+    @PostMapping("/test/help")
     public HashMap<String,Object> help() {
         HashMap<String, Object> resultJson = service.getHelp();
         return resultJson;

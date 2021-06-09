@@ -131,7 +131,7 @@ public class Service {
         return resultJson;
     }
 
-    private HashMap<String, Object> getResponse(ArrayList<Model> selectList) {
+    public HashMap<String, Object> getResponse(ArrayList<Model> selectList) {
         HashMap<String, Object> resultJson = new HashMap<>();
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();

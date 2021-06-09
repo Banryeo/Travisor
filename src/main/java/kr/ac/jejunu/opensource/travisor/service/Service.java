@@ -26,103 +26,61 @@ import java.util.List;
 public class Service {
 
     @Autowired
-    Repository repository;
+    public Repository repository;
 
     @Transactional
     public HashMap<String, Object> getInfo(Map<String, Object> params) throws ParseException, java.text.ParseException, JsonProcessingException {
 
         HashMap<String, Object> resultJson = new HashMap<>();
-        HashMap<String,Object> userRequest =  (HashMap<String,Object>) params.get("userRequest");
-        String utter = userRequest.get("utterance").toString().replace("\n","");
+        HashMap<String,Object> userRequest=new HashMap<>();
+        HashMap<String,Object> days=new HashMap<>();
 
-        HashMap<String,Object> action =  (HashMap<String,Object>) params.get("action");
-        HashMap<String,Object> days = (HashMap<String,Object>) action.get("params");
+        HashMap<String,Object> action=new HashMap<>();
         JSONParser parser=new JSONParser();
-        JSONObject firstDayJson= (JSONObject) parser.parse(days.get("startDate").toString());
-        JSONObject afterDayJson=(JSONObject) parser.parse(days.get("endDate").toString());;
+        String utter=null;
 
-        String startDate=firstDayJson.get("value").toString();
-        String endDate=afterDayJson.get("value").toString();
-        String location=days.get("location").toString();
+        JSONObject firstDayJson=null;
+        JSONObject afterDayJson=null;
+
+        String startDate=null;
+        String endDate=null;
+        String location=null;
+        String culture=null;
 
 
-        ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
-        list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-        String culture= new String();
-       if(list!=null){
-           for(HashMap<String, Object> lists:list){
-               if(lists.get("lifespan").toString().equals("5")){
-                   culture=lists.get("name").toString();
-                   break;
-               }
-           }
-       }
 
-       switch (culture){
-           case "festival":
-               culture="행사";
-               break;
-           case "performance":
-               culture="공연";
-               break;
-           case "exhibition":
-               culture="전시";
-               break;
-       }
+
+        userRequest =  (HashMap<String,Object>) params.get("userRequest");
+        utter = userRequest.get("utterance").toString().replace("\n","");
+
+        action =  (HashMap<String,Object>) params.get("action");
+        days= (HashMap<String,Object>) action.get("params");
+
+        firstDayJson= (JSONObject) parser.parse(days.get("startDate").toString());
+        afterDayJson=(JSONObject) parser.parse(days.get("endDate").toString());;
+
+        startDate=firstDayJson.get("value").toString();
+        endDate=afterDayJson.get("value").toString();
+        location=days.get("location").toString();
+
+
+        culture = getCulture(params);
 
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
 //        String  value=  contextpram.get("value").toString();
 
+        Long startDateTime = getaUnixTime(startDate);
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date=format.parse(startDate+" 00:00:00");
-        Long startDateTime=date.getTime()/1000;
-
-
-        date=format.parse(endDate+" 00:00:00");
-        Long endDateTime=date.getTime()/1000;
+        Long endDateTime = getaUnixTime(endDate);
 
         List<Model> listItem = repository.search(startDateTime,endDateTime,culture);
-        System.out.println(listItem.size());
+        System.out.println(listItem);
+
         if(listItem.size()==0){
             throw new IllegalArgumentException(culture+" 정보가 없습니다.");
         }
 
-        ArrayList<Model> selectList=new ArrayList<>();
-        switch (location){
-            case "북쪽":
-                Collections.sort(listItem,new LocationComparator("제주시"));
-               for(int i=0;i<listItem.size();i++){
-                   if(!listItem.get(i).getLocation().contains("제주시")){
-                       break;
-                   }
-                   selectList.add(listItem.get(i));
-               }
-                break;
-            case "남쪽":
-                Collections.sort(listItem,new LocationComparator("서귀포시"));
-                for(int i=0;i<listItem.size();i++){
-                    if(!listItem.get(i).getLocation().contains("서귀포시")){
-                        break;
-                    }
-                    selectList.add(listItem.get(i));
-                }
-                break;
-            case "동쪽":
-                for(int i=0;i<listItem.size();i++){
-                    if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString())>126.524841479094){
-                        selectList.add(listItem.get(i));
-                    }
-                }
-                break;
-            case "서쪽":
-                for(int i=0;i<listItem.size();i++) {
-                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
-                        selectList.add(listItem.get(i));
-                    }
-                }
-                break;
-        }
+        ArrayList<Model> selectList = getLocation(location, listItem);
 
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();
@@ -155,6 +113,79 @@ public class Service {
 //        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
 //        getLonAndLat(getKakaoApiGeocoding());
         return resultJson;
+    }
+
+    private Long getaUnixTime(String startDate) throws java.text.ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date;
+        date = format.parse(startDate + " 00:00:00");
+        return date.getTime() / 1000;
+    }
+
+    private ArrayList<Model> getLocation(String location, List<Model> listItem) throws JsonProcessingException {
+        ArrayList<Model> selectList=new ArrayList<>();
+        switch (location){
+            case "북쪽":
+                Collections.sort(listItem,new LocationComparator("제주시"));
+               for(int i = 0; i< listItem.size(); i++){
+                   if(!listItem.get(i).getLocation().contains("제주시")){
+                       break;
+                   }
+                   selectList.add(listItem.get(i));
+               }
+                break;
+            case "남쪽":
+                Collections.sort(listItem,new LocationComparator("서귀포시"));
+                for(int i = 0; i< listItem.size(); i++){
+                    if(!listItem.get(i).getLocation().contains("서귀포시")){
+                        break;
+                    }
+                    selectList.add(listItem.get(i));
+                }
+                break;
+            case "동쪽":
+                for(int i = 0; i< listItem.size(); i++){
+                    if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString())>126.524841479094){
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+            case "서쪽":
+                for(int i = 0; i< listItem.size(); i++) {
+                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+        }
+        return selectList;
+    }
+
+    private String getCulture(Map<String, Object> params) {
+        ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+        list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
+        String culture= new String();
+        if(list!=null){
+            for(HashMap<String, Object> lists:list){
+                if(lists.get("lifespan").toString().equals("5")){
+                    culture=lists.get("name").toString();
+                    break;
+                }
+            }
+        }
+
+        switch (culture){
+            case "festival":
+                culture="행사";
+                break;
+            case "performance":
+                culture="공연";
+                break;
+            case "exhibition":
+                culture="전시";
+                break;
+        }
+        return culture;
     }
 
     @Transactional
@@ -207,7 +238,6 @@ public class Service {
 
         resultJson.put("version","2.0");
         resultJson.put("template",template);
-        System.out.println(resultJson);
         return resultJson;
     }
 

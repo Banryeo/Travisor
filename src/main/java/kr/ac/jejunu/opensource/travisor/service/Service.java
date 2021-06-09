@@ -153,7 +153,7 @@ public class Service {
         HashMap<String, Object> group3= new HashMap<>();
 
         group2.put("action", "message");
-        group2.put("label", "열어보기");
+        group2.put("label", "설명 자세히 보기");
         group2.put("messageText", ""+itemMessage);
 
         group3.put("action", "webLink");
@@ -163,8 +163,8 @@ public class Service {
         buttons.add(group2);
         buttons.add(group3);
 
-        group1.put("title", itemTitle+"["+startDate+"]"+"["+endDate+"]");
-        group1.put("description", itemDescription);
+        group1.put("title", itemTitle);
+        group1.put("description", "["+startDate+"]"+"["+endDate+"]");
         imageUrl.put("imageUrl", itemImageUrl);
         group1.put("thumbnail",imageUrl);
         group1.put("buttons", buttons);

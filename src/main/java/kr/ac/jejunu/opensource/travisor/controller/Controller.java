@@ -2,6 +2,7 @@ package kr.ac.jejunu.opensource.travisor.controller;
 
 //import kr.ac.jejunu.opensource.travisor.service.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import kr.ac.jejunu.opensource.travisor.context.Context;
 import kr.ac.jejunu.opensource.travisor.service.Service;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -19,16 +20,19 @@ public class Controller {
     @Autowired
     public Service service;
 
+    @Autowired
+    public Context context;
+
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public HashMap<String,Object> nullData(){
-        return service.simpleMessage("실행중 오류가 발생하였습니다 다시 해주세요");
+        return context.simpleMessage("실행중 오류가 발생하였습니다 다시 해주세요");
     }
 
     @ResponseBody
     @ExceptionHandler(IllegalArgumentException.class)
     public HashMap<String,Object> nullData(final IllegalArgumentException ex){
-        return service.simpleMessage(ex.getMessage());
+        return context.simpleMessage(ex.getMessage());
     }
 
     @ResponseBody

@@ -85,7 +85,7 @@ public class Service {
         List<Model> listItem = repository.search(startDateTime,endDateTime,culture);
         System.out.println(listItem.size());
         if(listItem.size()==0){
-            throw new IllegalArgumentException("여행지 정보가 없습니다.");
+            throw new IllegalArgumentException(culture+" 정보가 없습니다.");
         }
 
         ArrayList<Model> selectList=new ArrayList<>();

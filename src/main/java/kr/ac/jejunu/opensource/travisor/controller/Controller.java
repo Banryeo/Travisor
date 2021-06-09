@@ -20,6 +20,12 @@ public class Controller {
     public Service service;
 
     @ResponseBody
+    @ExceptionHandler(Exception.class)
+    public HashMap<String,Object> nullData(){
+        return service.simpleMessage("실행중 오류가 발생하였습니다 다시 해주세요");
+    }
+
+    @ResponseBody
     @ExceptionHandler(IllegalArgumentException.class)
     public HashMap<String,Object> nullData(final IllegalArgumentException ex){
         return service.simpleMessage(ex.getMessage());

@@ -144,7 +144,7 @@ public class Context {
         group2.put("label", "설명 자세히 보기");
         group2.put("messageText", "" + itemMessage);
 
-        group3.put("action", "webLink");
+        group3.put("action", "messageText");
         group3.put("label", "구경하기");
         group3.put("messageText", "짜잔! 우리가 찾던 보물입니다");
        // group3.put("webLinkUrl", itemWebUrl);

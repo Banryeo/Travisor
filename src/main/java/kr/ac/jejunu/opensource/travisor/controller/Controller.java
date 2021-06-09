@@ -21,8 +21,9 @@ public class Controller {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public HashMap<String,Object> nullData(final IllegalArgumentException ex){
-        return null;
+        return service.simpleMessage(ex.getMessage());
     }
+    
     @ResponseBody
     @PostMapping("/test")
     public HashMap<String,Object> test(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException, ParseException, java.text.ParseException {

@@ -47,6 +47,7 @@ public class Service {
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
+        System.out.println(list);
         HashMap<String,Object>  contexts=list.get(0);
         String name= contexts.get("name").toString();
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");

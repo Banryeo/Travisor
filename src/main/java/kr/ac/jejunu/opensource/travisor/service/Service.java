@@ -57,7 +57,6 @@ public class Service {
            }
        }
        System.out.println(name);
-        HashMap<String,Object>  contexts=list.get(0);
 
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
 //        String  value=  contextpram.get("value").toString();

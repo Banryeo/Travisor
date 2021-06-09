@@ -27,6 +27,12 @@ public class Controller {
         return resultJson;
     }
 
+    @PostMapping("/help")
+    public HashMap<String,Object> help() {
+        HashMap<String, Object> resultJson = service.getHelp();
+        return resultJson;
+    }
+
     @PostMapping("/test/v1")
     public JSONObject testV1(@RequestBody JSONObject jsonObject){
         System.out.println(jsonObject.toString());

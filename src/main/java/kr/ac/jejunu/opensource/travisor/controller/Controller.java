@@ -53,7 +53,7 @@ public class Controller {
     }
 
     @ResponseBody
-    @PostMapping("/test/tests")
+    @GetMapping("/test/tests")
     public HashMap<String,Object> tests() {
         HashMap<String, Object> resultJson = context.simpleMessage("test!!");
         return resultJson;

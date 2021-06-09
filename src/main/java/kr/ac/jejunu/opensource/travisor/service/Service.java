@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
@@ -47,16 +48,27 @@ public class Service {
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-        String name= new String();
+        String culture= new String();
        if(list!=null){
            for(HashMap<String, Object> lists:list){
                if(lists.get("lifespan").toString().equals("5")){
-                   name=lists.get("name").toString();
+                   culture=lists.get("name").toString();
                    break;
                }
            }
        }
-       System.out.println(name);
+
+       switch (culture){
+           case "festival":
+               culture="행사";
+               break;
+           case "performance":
+               culture="공연";
+               break;
+           case "exhibition":
+               culture="전시";
+               break;
+       }
 
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
 //        String  value=  contextpram.get("value").toString();
@@ -69,9 +81,12 @@ public class Service {
 
         date=format.parse(endDate+" 00:00:00");
         Long endDateTime=date.getTime()/1000;
-        System.out.println("날짜 데이터"+startDateTime+"\n"+endDateTime);
 
-        List<Model> listItem = repository.search(startDateTime,endDateTime);
+        List<Model> listItem = repository.search(startDateTime,endDateTime,culture);
+        System.out.println(listItem.size());
+        if(listItem.size()==0){
+            throw new IllegalArgumentException("여행지 정보가 없습니다.");
+        }
 
         ArrayList<Model> selectList=new ArrayList<>();
         switch (location){

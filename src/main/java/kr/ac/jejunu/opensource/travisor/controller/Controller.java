@@ -31,6 +31,7 @@ public class Controller {
         return resultJson;
     }
 
+    @ResponseBody
     @PostMapping("/test/help")
     public HashMap<String,Object> help() {
         HashMap<String, Object> resultJson = service.getHelp();

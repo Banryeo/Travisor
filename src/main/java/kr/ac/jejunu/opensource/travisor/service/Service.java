@@ -207,6 +207,7 @@ public class Service {
 
         resultJson.put("version","2.0");
         resultJson.put("template",template);
+        System.out.println(resultJson);
         return resultJson;
     }
 

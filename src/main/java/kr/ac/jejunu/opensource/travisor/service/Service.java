@@ -123,7 +123,7 @@ public class Service {
                 break;
         }
 
-        HashMap<String, Object> resultJson = getResponse(selectList);
+        HashMap<String, Object> resultJson = carouselResponse(selectList);
 
 //
 //        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
@@ -131,7 +131,7 @@ public class Service {
         return resultJson;
     }
 
-    public HashMap<String, Object> getResponse(ArrayList<Model> selectList) {
+    public HashMap<String, Object> carouselResponse(ArrayList<Model> selectList) {
         HashMap<String, Object> resultJson = new HashMap<>();
         List<HashMap<String,Object>> outputs = new ArrayList<>();
         HashMap<String,Object> template = new HashMap<>();

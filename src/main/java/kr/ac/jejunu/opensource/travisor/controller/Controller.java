@@ -52,6 +52,13 @@ public class Controller {
         return resultJson;
     }
 
+    @ResponseBody
+    @PostMapping("/test/tests")
+    public HashMap<String,Object> tests() {
+        HashMap<String, Object> resultJson = context.simpleMessage("test!!");
+        return resultJson;
+    }
+
     @PostMapping("/test/v1")
     public JSONObject testV1(@RequestBody JSONObject jsonObject){
         System.out.println(jsonObject.toString());

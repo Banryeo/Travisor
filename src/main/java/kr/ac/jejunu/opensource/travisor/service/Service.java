@@ -158,7 +158,7 @@ public class Service {
 
         group3.put("action", "webLink");
         group3.put("label", "구경하기");
-        group3.put("webLinkUrl", itemWebUrl);
+        //group3.put("webLinkUrl", itemWebUrl);
 
         buttons.add(group2);
         buttons.add(group3);

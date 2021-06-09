@@ -71,74 +71,74 @@ public class Service {
         Long endDateTime=date.getTime()/1000;
         System.out.println("날짜 데이터"+startDateTime+"\n"+endDateTime);
 
-        List<Optional<Model>> listItem = repository.search(startDateTime,endDateTime);
+        List<Model> listItem = repository.search(startDateTime,endDateTime);
 
         ArrayList<Model> selectList=new ArrayList<>();
-//        switch (location){
-//            case "북쪽":
-//                Collections.sort(listItem,new LocationComparator("제주시"));
-//               for(int i=0;i<listItem.size();i++){
-//                   if(!listItem.get(i).getLocation().contains("제주시")){
-//                       break;
-//                   }
-//                   selectList.add(listItem.get(i));
-//               }
-//                break;
-//            case "남쪽":
-//                Collections.sort(listItem,new LocationComparator("서귀포시"));
-//                for(int i=0;i<listItem.size();i++){
-//                    if(!listItem.get(i).getLocation().contains("서귀포시")){
-//                        break;
-//                    }
-//                    selectList.add(listItem.get(i));
-//                }
-//                break;
-//            case "동쪽":
-//                for(int i=0;i<listItem.size();i++){
-//                    if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString())>126.524841479094){
-//                        selectList.add(listItem.get(i));
-//                    }
-//                }
-//                break;
-//            case "서쪽":
-//                for(int i=0;i<listItem.size();i++) {
-//                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
-//                        selectList.add(listItem.get(i));
-//                    }
-//                }
-//                break;
-//        }
-//
-//        List<HashMap<String,Object>> outputs = new ArrayList<>();
-//        HashMap<String,Object> template = new HashMap<>();
-//        HashMap<String,Object> carousel = new HashMap<>();
-//        HashMap<String,Object> type = new HashMap<>();
-//        List<HashMap<String,Object>> items = new ArrayList<>();
-//
-//
-//        for(int i=0; i<selectList.size(); i++){
-//            HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
-//                    selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
-//                    selectList.get(i).getCulture(), "https://www.naver.com/",
-//                    selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
-//            items.add(item);
-//        }
-//
-//        type.put("type", "basicCard");
-//        type.put("items", items);
-//
-//        carousel.put("carousel", type);
-//
-//        outputs.add(carousel);
-//
-//        template.put("outputs",outputs);
-//
-//        resultJson.put("version","2.0");
-//        resultJson.put("template",template);
+        switch (location){
+            case "북쪽":
+                Collections.sort(listItem,new LocationComparator("제주시"));
+               for(int i=0;i<listItem.size();i++){
+                   if(!listItem.get(i).getLocation().contains("제주시")){
+                       break;
+                   }
+                   selectList.add(listItem.get(i));
+               }
+                break;
+            case "남쪽":
+                Collections.sort(listItem,new LocationComparator("서귀포시"));
+                for(int i=0;i<listItem.size();i++){
+                    if(!listItem.get(i).getLocation().contains("서귀포시")){
+                        break;
+                    }
+                    selectList.add(listItem.get(i));
+                }
+                break;
+            case "동쪽":
+                for(int i=0;i<listItem.size();i++){
+                    if(Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString())>126.524841479094){
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+            case "서쪽":
+                for(int i=0;i<listItem.size();i++) {
+                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
+                        selectList.add(listItem.get(i));
+                    }
+                }
+                break;
+        }
+
+        List<HashMap<String,Object>> outputs = new ArrayList<>();
+        HashMap<String,Object> template = new HashMap<>();
+        HashMap<String,Object> carousel = new HashMap<>();
+        HashMap<String,Object> type = new HashMap<>();
+        List<HashMap<String,Object>> items = new ArrayList<>();
 
 
-        //아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
-        //getLonAndLat(getKakaoApiGeocoding());
+        for(int i=0; i<selectList.size(); i++){
+            HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
+                    selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
+                    selectList.get(i).getCulture(), "https://www.naver.com/",
+                    selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
+            items.add(item);
+        }
+
+        type.put("type", "basicCard");
+        type.put("items", items);
+
+        carousel.put("carousel", type);
+
+        outputs.add(carousel);
+
+        template.put("outputs",outputs);
+
+        resultJson.put("version","2.0");
+        resultJson.put("template",template);
+
+//
+//        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
+//        getLonAndLat(getKakaoApiGeocoding());
         return resultJson;
     }
 

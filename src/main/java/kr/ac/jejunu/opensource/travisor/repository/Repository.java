@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface Repository extends JpaRepository<Model, Integer> {
 
     @Query(value = "SELECT * FROM Model WHERE  UNIX_TIMESTAMP(startDate)<=?2 and UNIX_TIMESTAMP(endDate)>=?1 " ,nativeQuery = true)
-    List<Optional<Model>> search(long startDate, long endDate);
+    List<Model> search(long startDate, long endDate);
 }

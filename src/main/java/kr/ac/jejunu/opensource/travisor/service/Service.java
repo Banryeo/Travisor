@@ -134,7 +134,7 @@ public class Service {
         for(int i=0; i<selectList.size(); i++){
             HashMap<String,Object> item = addItem(selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
-                    selectList.get(i).getCulture(), "https://www.naver.com/",
+                    selectList.get(i).getExplanation(), "https://www.naver.com/",
                     selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
             items.add(item);
         }
@@ -157,6 +157,12 @@ public class Service {
         return resultJson;
     }
 
+    @Transactional
+    public HashMap<String, Object> getHelp() {
+        String helpMessasge = "도움이 필요하군요? 저희는 축제, 전시, 공연 정보를 제공하고 있답니다. Travisor 봇이 제대로 동작을 하고 있지 않다면 \"종료\"를 입력한 뒤에 다시 시도해 보세요!";
+        return simpleMessage(helpMessasge);
+    }
+
     public HashMap<String, Object> addItem(String itemTitle, String itemDescription,
                                           String itemImageUrl, String itemMessage, String itemWebUrl,
                                            String startDate, String endDate){
@@ -168,23 +174,42 @@ public class Service {
         HashMap<String, Object> group3= new HashMap<>();
 
         group2.put("action", "message");
-        group2.put("label", "열어보기");
-        group2.put("messageText", itemMessage);
+        group2.put("label", "설명 자세히 보기");
+        group2.put("messageText", ""+itemMessage);
 
         group3.put("action", "webLink");
         group3.put("label", "구경하기");
-        group3.put("webLinkUrl", itemWebUrl);
+        //group3.put("webLinkUrl", itemWebUrl);
 
         buttons.add(group2);
         buttons.add(group3);
 
-        group1.put("title", itemTitle+"["+startDate+"]"+"["+endDate+"]");
-        group1.put("description", itemDescription);
+        group1.put("title", itemTitle);
+        group1.put("description", "["+startDate+"]"+"~"+"["+endDate+"]");
         imageUrl.put("imageUrl", itemImageUrl);
         group1.put("thumbnail",imageUrl);
         group1.put("buttons", buttons);
         return group1;
     }
+
+    public HashMap<String, Object> simpleMessage(String rtnStr){
+        HashMap<String, Object> resultJson = new HashMap<>();
+        List<HashMap<String,Object>> outputs = new ArrayList<>();
+        HashMap<String,Object> template = new HashMap<>();
+        HashMap<String, Object> simpleText = new HashMap<>();
+        HashMap<String, Object> text = new HashMap<>();
+
+        text.put("text",rtnStr);
+        simpleText.put("simpleText",text);
+        outputs.add(simpleText);
+
+        template.put("outputs",outputs);
+
+        resultJson.put("version","2.0");
+        resultJson.put("template",template);
+        return resultJson;
+    }
+
 
     public String getKakaoApiGeocoding(String query) {
         String apiKey = "da584fb56166b922cf227ce5be613b37";

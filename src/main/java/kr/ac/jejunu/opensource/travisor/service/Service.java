@@ -47,9 +47,17 @@ public class Service {
 
         ArrayList <HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
         list = (ArrayList<HashMap<String, Object>>) params.get("contexts");
-        System.out.println(list);
-        HashMap<String,Object>  contexts=list.get(0);
-        String name= contexts.get("name").toString();
+        String name= new String();
+       if(list!=null){
+           for(HashMap<String, Object> lists:list){
+               if(lists.get("lifespan").toString().equals("5")){
+                   name=lists.get("name").toString();
+                   break;
+               }
+           }
+       }
+       System.out.println(name);
+
 //        HashMap<String,Object>  contextpram= (HashMap<String,Object>) param.get("contextpram");
 //        String  value=  contextpram.get("value").toString();
 
@@ -61,6 +69,7 @@ public class Service {
 
         date=format.parse(endDate+" 00:00:00");
         Long endDateTime=date.getTime()/1000;
+        System.out.println("날짜 데이터"+startDateTime+"\n"+endDateTime);
 
         List<Model> listItem = repository.search(startDateTime,endDateTime);
 
@@ -127,9 +136,9 @@ public class Service {
         resultJson.put("version","2.0");
         resultJson.put("template",template);
 
-
-        //아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
-        //getLonAndLat(getKakaoApiGeocoding());
+//
+//        아래 로직은 api에서 위도경도를 주소로 검색해서 받아와야 할때 사용
+//        getLonAndLat(getKakaoApiGeocoding());
         return resultJson;
     }
 

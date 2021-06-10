@@ -21,6 +21,6 @@ public class InstagramServiceTest extends TestCase {
 
     @Test
     public void testGetInstagram() throws IOException {
-        instagramService.getInstagram();
+        instagramService.getInstagram("제주");
     }
 }

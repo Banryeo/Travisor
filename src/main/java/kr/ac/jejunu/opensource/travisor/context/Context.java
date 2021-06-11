@@ -141,14 +141,10 @@ public class Context {
         List<HashMap<String, Object>> buttons = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> group2 = new HashMap<String, Object>();
         HashMap<String, Object> group3 = new HashMap<String, Object>();
-        HashMap<String, Object> extra = new HashMap<String, Object>();
-
-        extra.put("test","test");
 
         group2.put("action", "block");
         group2.put("label", "설명 자세히 보기");
         group2.put("blockId", reponseBlockId);
-        group2.put("extra",extra);
 
         group3.put("action", "webLink");
         group3.put("label", "구글 검색하기");

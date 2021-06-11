@@ -15,6 +15,7 @@ public class ApiController {
 
     @GetMapping("/test/api/{modelId}")
     public Model getModel(@PathVariable("modelId") Integer id){
+        System.out.println("웹 접속"+id);
         return repository.findById(id).get();
     }
 }

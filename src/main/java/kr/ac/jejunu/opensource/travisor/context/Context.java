@@ -143,7 +143,7 @@ public class Context {
         HashMap<String, Object> group3 = new HashMap<String, Object>();
         HashMap<String, Object> extra = new HashMap<String, Object>();
 
-        extra.put("test","test");
+        extra.put("test","뭐가?");
 
         group2.put("action", "block");
         group2.put("label", "설명 자세히 보기");

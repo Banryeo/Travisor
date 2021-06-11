@@ -15,6 +15,6 @@ public class InstagramAPiController {
 
     @GetMapping("/api/instagram")
     public String getInstagram() throws IOException {
-        return instagramService.getInstagram("제주");
+        return instagramService.getInstagram("Jeju");
     }
 }

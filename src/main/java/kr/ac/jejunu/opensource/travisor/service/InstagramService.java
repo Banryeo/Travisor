@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 @Service
 public class InstagramService {
@@ -18,7 +19,9 @@ public class InstagramService {
         String apiUrl = "https://www.instagram.com/explore/tags/";
         String suffix = "/?__a=1";
 
-        String spec = apiUrl + tagName + suffix;
+        //해시태그 검색어를 인코딩
+        String spec = apiUrl + URLEncoder.encode(tagName, "UTF-8") + suffix;
+
 
         System.out.println(spec);
 

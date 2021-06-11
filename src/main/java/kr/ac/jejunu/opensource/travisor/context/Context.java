@@ -35,7 +35,7 @@ public class Context {
 
 
         for (int i = 0; i < selectList.size(); i++) {
-            HashMap<String, Object> item = addItem(selectList.get(i).getCultureName(),
+            HashMap<String, Object> item = addItem(selectList.get(i).getId(), selectList.get(i).getCultureName(),
                     selectList.get(i).getExplanation(), selectList.get(i).getImageUrl(),
                     selectList.get(i).getExplanation(), "https://www.naver.com/",
                     selectList.get(i).getStartDate().toString(), selectList.get(i).getEndDate().toString());
@@ -132,7 +132,7 @@ public class Context {
     }
 
 
-    public HashMap<String, Object> addItem(String itemTitle, String itemDescription,
+    public HashMap<String, Object> addItem(Integer itemId, String itemTitle, String itemDescription,
                                            String itemImageUrl, String itemMessage, String itemWebUrl,
                                            String startDate, String endDate) {
 
@@ -142,9 +142,9 @@ public class Context {
         HashMap<String, Object> group2 = new HashMap<String, Object>();
         HashMap<String, Object> group3 = new HashMap<String, Object>();
 
-        group2.put("action", "message");
+        group2.put("action", "webLink");
         group2.put("label", "설명 자세히 보기");
-        group2.put("messageText", itemDescription);
+        group2.put("webLinkUrl", "http://3.35.24.12/test/api" + itemId);
 
         group3.put("action", "webLink");
         group3.put("label", "구글 검색하기");

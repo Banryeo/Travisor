@@ -142,9 +142,16 @@ public class Context {
         HashMap<String, Object> group2 = new HashMap<String, Object>();
         HashMap<String, Object> group3 = new HashMap<String, Object>();
 
-        group2.put("action", "block");
+        HashMap<String, Object> extra = new HashMap<String, Object>();
+        HashMap<String, Object> reason = new HashMap<String, Object>();
+        reason.put("code",1);
+        reason.put("message","OK");
+        extra.put("reason",reason);
+
+        group2.put("action", "message");
         group2.put("label", "설명 자세히 보기");
-        group2.put("blockId", reponseBlockId);
+        group2.put("messageText", "reponseBlockId");
+        group2.put("extra",extra);
 
         group3.put("action", "webLink");
         group3.put("label", "구글 검색하기");

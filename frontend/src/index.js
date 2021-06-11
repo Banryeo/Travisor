@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const $container = document.getElementsByClassName("container");
-const $button = document.getElementsByTagName("button");
 
-window.onload = getModel(1)
+const modelId = getParameterByName("id")
+window.onload = getModel(modelId)
+
 
 function getModel(modelId) {
     console.log(modelId)
@@ -14,4 +15,11 @@ function getModel(modelId) {
             $container.innerHTML = res
         })
         .catch(e => console.log(e))
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }

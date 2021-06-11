@@ -88,8 +88,6 @@ public class Service {
         String helpMessasge = "도움이 필요하군요? 저희는 축제, 전시, 공연 정보를 제공하고 있답니다. Travisor 봇이 제대로 동작을 하고 있지 않다면 \"종료\"를 입력한 뒤에 다시 시도해 보세요!";
         return context.simpleMessage(helpMessasge);
     }
-
-
 }
 
 

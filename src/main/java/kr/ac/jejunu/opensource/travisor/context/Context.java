@@ -22,6 +22,8 @@ import java.util.*;
 @Configuration
 public class Context {
 
+    private final String reponseBlockId="60c358e4a30146398b661ff9";
+
 
     public HashMap<String, Object> carouselResponse(ArrayList<Model> selectList) {
         HashMap<String, Object> resultJson = new HashMap<String, Object>();
@@ -142,7 +144,7 @@ public class Context {
 
         group2.put("action", "message");
         group2.put("label", "설명 자세히 보기");
-        group2.put("messageText", "" + itemMessage);
+        group2.put("blockId", reponseBlockId);
 
         group3.put("action", "webLink");
         group3.put("label", "구글 검색하기");

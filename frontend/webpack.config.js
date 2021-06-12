@@ -1,14 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path')
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'app.js',
-        path: `${__dirname}/dist`,
+        filename: 'index.js',
+        path: `${__dirname}/../src/main/resources/static`,
     },
     devServer: {
-        contentBase: `.dist`,
+        contentBase: `../src/main/resources/static`,
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html',

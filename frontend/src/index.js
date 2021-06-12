@@ -2,8 +2,6 @@ import axios from "axios";
 import "./main.css";
 import testData from "./testdata/test";
 
-const $container = document.getElementsByClassName("container");
-
 const modelId = getParameterByName("id")
 // window.onload = getModel(modelId)
 let data = testData;

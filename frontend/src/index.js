@@ -3,7 +3,7 @@ import "./main.css";
 import testData from "./testdata/test";
 
 const modelId = getParameterByName("id")
-// window.onload = getModel(modelId)
+window.onload = getModel(modelId)
 let data = testData;
 
 function getModel(modelId) {

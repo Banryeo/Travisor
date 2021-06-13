@@ -5,12 +5,8 @@ import "./main.css";
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
 
-
-
-
 function getModel(modelId) {
     console.log(modelId)
-
 
     axios.get("http://3.35.24.12/test/api/" + modelId)
         .then(res => {
@@ -29,6 +25,8 @@ function getParameterByName(name) {
 
 
 function showDetail(data) {
+    console.log(data)
+
     const $header = document.querySelector(".card-header");
     const $cultureName = document.querySelector(".card-title");
     const $img = document.querySelector("img");

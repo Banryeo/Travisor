@@ -30,7 +30,6 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-
 function showDetail(data) {
     console.log(typeof data)
     console.log(typeof data.culture)
@@ -49,8 +48,9 @@ function showDetail(data) {
     $location.append(`위치: ${data.location}`)
 
     const startDate = new Date(data.startDate)
-    const endDate =new Date(data.endDate)
-    const dateString = `${startDate.getMonth()}월 ${startDate.getDay()}일 ~ ${endDate.getMonth()}월 ${endDate.getDay()}일`
+    const endDate = new Date(data.endDate)
+
+    const dateString = `${startDate.getMonth() + 1}월 ${startDate.getDate() + 1}일 ~ ${endDate.getMonth() + 1}월 ${endDate.getDate() + 1}일`
 
     $date.append(dateString);
 

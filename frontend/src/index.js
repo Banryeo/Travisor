@@ -50,7 +50,7 @@ function showDetail(data) {
     const startDate = new Date(data.startDate)
     const endDate = new Date(data.endDate)
 
-    const dateString = `${startDate.getMonth() + 1}월 ${startDate.getDate() + 1}일 ~ ${endDate.getMonth()}월 ${endDate.getDate()}일`
+    const dateString = `${startDate.getMonth() + 1}월 ${startDate.getDate()}일 ~ ${endDate.getMonth() + 1}월 ${endDate.getDate()}일`
 
     $date.append(dateString);
 

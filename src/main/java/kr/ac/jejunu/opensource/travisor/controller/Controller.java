@@ -28,7 +28,7 @@ public class Controller {
     @ExceptionHandler(Exception.class)
     public HashMap<String,Object> nullData(final Exception ex){
         System.out.println(ex.getMessage());
-        return context.simpleMessage("실행중 오류가 발생하였습니다 다시 해주세요");
+        return context.simpleMessage("실행중 오류가 발생하였습니다 다시 해주세요 s");
     }
 
     @ResponseBody

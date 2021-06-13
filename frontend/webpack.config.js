@@ -7,7 +7,14 @@ module.exports = {
         path: `${__dirname}/../src/main/resources/static`,
     },
     devServer: {
-        contentBase: `../src/main/resources/static`,
+        contentBase: `src`,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:9000',
+                ws: true,
+                changeOrigin:true
+            }
+        }
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html',

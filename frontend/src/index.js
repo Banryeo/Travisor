@@ -7,8 +7,11 @@ window.onload = getModel(modelId)
 
 function getModel(modelId) {
     console.log(modelId)
+    const header = {
+        "Access-Control-Allow-Origin": "*"
+    }
 
-    axios.get("http://3.35.24.12/test/api/" + modelId)
+    axios.get("http://3.35.24.12/test/api/" + modelId, header)
         .then(res => {
             console.log(res)
             showDetail(res)

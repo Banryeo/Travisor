@@ -5,18 +5,22 @@ import "./main.css";
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
 
-function getModel(modelId) {
+async function getModel(modelId) {
     console.log(modelId)
     const header = {
         "Access-Control-Allow-Origin": "*"
     }
 
-    axios.get("http://3.35.24.12/test/api/" + modelId, header)
+    await axios.get("http://3.35.24.12/test/api/" + modelId, header)
         .then(res => {
             console.log(res)
-            showDetail(res)
+            const data = res.data
+            console.log(data)
+            showDetail(data)
         })
         .catch(e => console.log(e))
+
+
 }
 
 function getParameterByName(name) {
@@ -28,7 +32,8 @@ function getParameterByName(name) {
 
 
 function showDetail(data) {
-    console.log(data)
+    console.log(typeof data)
+    console.log(typeof data.culture)
 
     const $header = document.querySelector(".card-header");
     const $cultureName = document.querySelector(".card-title");

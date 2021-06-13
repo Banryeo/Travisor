@@ -1,20 +1,21 @@
 import axios from "axios";
 import "./main.css";
-import testData from "./testdata/test";
+// import testData from "./testdata/test";
 
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
-let data = testData;
+let data = getModel()
 
-function getModel(modelId) {
+async function getModel(modelId) {
     console.log(modelId)
 
     axios.get("http://3.35.24.12/test/api/" + modelId)
         .then(res => {
             console.log(res)
-            data = res
+            return res;
         })
         .catch(e => console.log(e))
+    return null;
 }
 
 function getParameterByName(name) {

@@ -1,5 +1,9 @@
 package kr.ac.jejunu.opensource.travisor.service;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -41,10 +45,14 @@ public class InstagramService {
                 sbuf.append(str + "\r\n");
             }
 
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject)parser.parse(sbuf.toString());
+
+
             System.out.println(sbuf);
             isr.close();
             return sbuf.toString();
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | ParseException e) {
             e.printStackTrace();
         }
 

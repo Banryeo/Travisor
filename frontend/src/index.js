@@ -4,18 +4,25 @@ import "./main.css";
 
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+function getModel(modelId) {
+=======
+>>>>>>> Stashed changes
 let data = getModel()
 console.log(data)
 async function getModel(modelId) {
     console.log(modelId)
+>>>>>>> fa176cd8c66d3f7fa957719a31ec52a5c6e5cd55
 
     axios.get("http://3.35.24.12/test/api/" + modelId)
         .then(res => {
             console.log(res)
-            return res;
+            showDetail(res)
         })
         .catch(e => console.log(e))
-    return null;
 }
 
 function getParameterByName(name) {
@@ -26,7 +33,7 @@ function getParameterByName(name) {
 }
 
 
-function showDetail() {
+function showDetail(data) {
     const $header = document.querySelector(".card-header");
     const $cultureName = document.querySelector(".card-title");
     const $img = document.querySelector("img");
@@ -49,4 +56,3 @@ function showDetail() {
 
 }
 
-showDetail()

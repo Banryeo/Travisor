@@ -4,18 +4,13 @@ import "./main.css";
 
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
+
+
 
 function getModel(modelId) {
-=======
->>>>>>> Stashed changes
-let data = getModel()
-console.log(data)
-async function getModel(modelId) {
     console.log(modelId)
->>>>>>> fa176cd8c66d3f7fa957719a31ec52a5c6e5cd55
+
 
     axios.get("http://3.35.24.12/test/api/" + modelId)
         .then(res => {

@@ -290,7 +290,7 @@
         console.log(e);
         o.a.get("http://3.35.24.12/test/api/" + e, {"Access-Control-Allow-Origin": "*"}).then(e => {
             console.log(e), function (e) {
-                console.log(e.data);
+                console.log(e);
                 const t = document.querySelector(".card-header"), n = document.querySelector(".card-title"),
                     r = document.querySelector("img"), o = document.querySelector(".card-text"),
                     i = document.querySelector(".date"), a = document.querySelector(".location");

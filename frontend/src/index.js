@@ -35,13 +35,13 @@ function showDetail(data) {
     const $location = document.querySelector(".location");
 
     $header.append(data.culture)
-    $cultureName.append(data.cultureName);
-    $img.setAttribute("src", "https://travelblog.expedia.co.kr/wp-content/uploads/2016/06/03.jpg")
+    $cultureName.append(data.cultureName)
+    $img.setAttribute("src", data.imageUrl)
     $explanation.append(data.explanation)
     $location.append(`위치: ${data.location}`)
 
-    const startDate = new Date(data.startDate);
-    const endDate =new Date(data.endDate);
+    const startDate = new Date(data.startDate)
+    const endDate =new Date(data.endDate)
     const dateString = `${startDate.getMonth()}월 ${startDate.getDay()}일 ~ ${endDate.getMonth()}월 ${endDate.getDay()}일`
 
     $date.append(dateString);

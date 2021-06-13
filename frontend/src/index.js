@@ -5,7 +5,7 @@ import "./main.css";
 const modelId = getParameterByName("id")
 window.onload = getModel(modelId)
 let data = getModel()
-
+console.log(data)
 async function getModel(modelId) {
     console.log(modelId)
 

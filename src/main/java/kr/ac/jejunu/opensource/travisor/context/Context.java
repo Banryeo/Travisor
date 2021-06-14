@@ -228,9 +228,9 @@ public class Context {
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
+        System.out.println(documents.size());
         for(int i=0;i<documents.size();i++){
             String adressName=documents.get(i).get("address_name").toString();
-            System.out.println(adressName);
         }
         lonandlat.put("lon", documents.get(0).get("x"));
         lonandlat.put("lat", documents.get(0).get("y"));

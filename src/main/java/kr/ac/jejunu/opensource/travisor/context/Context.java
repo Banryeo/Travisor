@@ -94,9 +94,11 @@ public class Context {
                 break;
             case "서쪽":
                 for (int i = 0; i < listItem.size(); i++) {
-                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094 && getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation()))!=null) {
-                        selectList.add(listItem.get(i));
-                    }
+                   if( getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation()))!=null){
+                       if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
+                           selectList.add(listItem.get(i));
+                       }
+                   }
                 }
                 break;
         }

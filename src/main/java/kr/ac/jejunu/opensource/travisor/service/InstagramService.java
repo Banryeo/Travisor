@@ -1,5 +1,6 @@
 package kr.ac.jejunu.opensource.travisor.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,6 +16,7 @@ import java.net.URL;
 
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 @Service
 public class InstagramService {
@@ -51,6 +53,9 @@ public class InstagramService {
 
             System.out.println(sbuf);
             isr.close();
+            ObjectMapper mapper = new ObjectMapper();
+            HashMap<String, Object> mappingData = mapper.readValue(sbuf.toString(), HashMap.class);
+            mappingData.get("graphql");
             return sbuf.toString();
         } catch (MalformedURLException | ParseException e) {
             e.printStackTrace();

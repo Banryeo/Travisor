@@ -234,8 +234,10 @@ public class Context {
             String adressName=documents.get(i).get("address_name").toString();
             System.out.println(adressName);
         }
-        lonandlat.put("lon", documents.get(0).get("x"));
-        lonandlat.put("lat", documents.get(0).get("y"));
+        if (documents.size()!=0){
+            lonandlat.put("lon", documents.get(0).get("x"));
+            lonandlat.put("lat", documents.get(0).get("y"));
+        }
         return lonandlat;
     }
 }

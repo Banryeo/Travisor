@@ -94,9 +94,10 @@ public class Context {
                 break;
             case "서쪽":
                 for (int i = 0; i < listItem.size(); i++) {
-                    System.out.println(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())));
-                    if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
-                        selectList.add(listItem.get(i));
+                    if(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon")!=null){
+                        if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
+                            selectList.add(listItem.get(i));
+                        }
                     }
                 }
                 break;
@@ -238,6 +239,9 @@ public class Context {
         if (documents.size()!=0){
             lonandlat.put("lon", documents.get(0).get("x"));
             lonandlat.put("lat", documents.get(0).get("y"));
+        }
+        else{
+            lonandlat.put("lon",null);
         }
         return lonandlat;
     }

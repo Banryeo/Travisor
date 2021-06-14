@@ -94,6 +94,7 @@ public class Context {
                 break;
             case "서쪽":
                 for (int i = 0; i < listItem.size(); i++) {
+                    System.out.println(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())));
                     if (Double.parseDouble(getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString()) < 126.524841479094) {
                         selectList.add(listItem.get(i));
                     }

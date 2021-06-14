@@ -224,16 +224,15 @@ public class Context {
         ObjectMapper mapper = new ObjectMapper();
         HashMap<String, Object> mappingData = new HashMap<String, Object>();
         HashMap<String, Object> lonandlat = new HashMap<String, Object>();
-        ArrayList<HashMap<String, Object>> documents = new ArrayList<HashMap<String, Object>>();
+        List<HashMap<String, Object>> documents = null;
 
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
-        System.out.println(documents);
-//        for(int i=0;i<documents.size();i++){
-//            String adressName=documents.get(i).get("address_name").toString();
-//            System.out.println(adressName);
-//        }
+        for(int i=0;i<documents.size();i++){
+            String adressName=documents.get(i).get("address_name").toString();
+            System.out.println(adressName);
+        }
         lonandlat.put("lon", documents.get(0).get("x"));
         lonandlat.put("lat", documents.get(0).get("y"));
         return lonandlat;

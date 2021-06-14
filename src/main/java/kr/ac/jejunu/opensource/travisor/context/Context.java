@@ -229,12 +229,13 @@ public class Context {
 
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
-        System.out.println(documents);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
-        System.out.println(documents);
         for(int i=0;i<documents.size();i++){
-            String adressName=documents.get(i).get("address_name").toString();
-            System.out.println(adressName);
+            boolean adressName=documents.get(i).get("address_name").toString().contains("제주특별자치도");
+            if(adressName){
+                documents.set(0,documents.get(i));
+                break;
+            }
         }
         if (documents.size()!=0){
             lonandlat.put("lon", documents.get(0).get("x"));

@@ -220,7 +220,6 @@ public class Context {
 
 
     public HashMap<String, Object> getLonAndLat(String geocodingString) throws JsonProcessingException {
-        System.out.println(geocodingString);
         ObjectMapper mapper = new ObjectMapper();
         HashMap<String, Object> mappingData = new HashMap<String, Object>();
         HashMap<String, Object> lonandlat = new HashMap<String, Object>();
@@ -228,7 +227,9 @@ public class Context {
 
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
+        System.out.println(documents);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
+        System.out.println(documents);
         for(int i=0;i<documents.size();i++){
             String adressName=documents.get(i).get("address_name").toString();
             System.out.println(adressName);

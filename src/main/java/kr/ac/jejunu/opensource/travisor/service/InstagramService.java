@@ -48,8 +48,8 @@ public class InstagramService {
                 sbuf.append(str + "\r\n");
             }
 
-            JSONParser parser = new JSONParser();
-            JSONObject object = (JSONObject)parser.parse(sbuf.toString());
+//            JSONParser parser = new JSONParser();
+//            JSONObject object = (JSONObject)parser.parse(sbuf.toString());
 
 
             System.out.println(sbuf);
@@ -81,7 +81,7 @@ public class InstagramService {
 //            System.out.println(text);
 //            return sbuf.toString();
             return texts.toString();
-        } catch (MalformedURLException | ParseException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 

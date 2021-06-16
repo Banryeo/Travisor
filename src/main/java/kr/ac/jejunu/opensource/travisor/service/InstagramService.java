@@ -16,6 +16,7 @@ import java.net.URL;
 
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @Service
@@ -52,10 +53,21 @@ public class InstagramService {
 
 
             System.out.println(sbuf);
+
             isr.close();
+            
             ObjectMapper mapper = new ObjectMapper();
             HashMap<String, Object> mappingData = mapper.readValue(sbuf.toString(), HashMap.class);
-            mappingData.get("graphql");
+            HashMap<String, Object> graphql= (HashMap<String, Object>) mappingData.get("graphql");
+            HashMap<String, Object> hashtag= (HashMap<String, Object>) graphql.get("hashtag");
+            HashMap<String, Object> media= (HashMap<String, Object>) hashtag.get("edge_hashtag_to_media");
+            ArrayList<HashMap<String,Object>> edges= (ArrayList<HashMap<String, Object>>) media.get("edges");
+            HashMap<String, Object> node= (HashMap<String, Object>) edges.get(0).get("node");
+            HashMap<String, Object> caption= (HashMap<String, Object>) node.get("edge_media_to_caption");
+            ArrayList<HashMap<String,Object>>innerEdges= (ArrayList<HashMap<String, Object>>) caption.get("edges");
+            HashMap<String, Object> innerNode= (HashMap<String, Object>) innerEdges.get(0).get("node");
+            String text= (String) innerNode.get("text");
+            System.out.println(text);
             return sbuf.toString();
         } catch (MalformedURLException | ParseException e) {
             e.printStackTrace();

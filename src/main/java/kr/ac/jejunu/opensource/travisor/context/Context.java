@@ -109,7 +109,6 @@ public class Context {
                 }
                 break;
         }
-        System.out.println(selectList);
         return selectList;
     }
 
@@ -276,7 +275,6 @@ public class Context {
         if (documents.size()!=0){
             lonandlat.put("lon", documents.get(select).get("x"));
             lonandlat.put("lat", documents.get(select).get("y"));
-            System.out.println("x:"+documents.get(select).get("x")+"y:"+documents.get(select).get("y"));
         }
         else{
             lonandlat.put("lon","non");

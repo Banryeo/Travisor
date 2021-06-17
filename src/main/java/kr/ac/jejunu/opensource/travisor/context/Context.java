@@ -231,11 +231,11 @@ public class Context {
 
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
-        System.out.println(mappingData);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
         for(int i=0;i<documents.size();i++){
             HashMap<String, Object> address= (HashMap<String, Object>) documents.get(i).get("address");
             boolean adressName=address.get("address_name").toString().contains("제주특별자치도");
+            System.out.println(adressName);
             if(adressName){
                 documents.set(0,documents.get(i));
                 break;

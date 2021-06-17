@@ -66,6 +66,7 @@ public class Context {
 
 
     public ArrayList<Model> getLocation(String location, List<Model> listItem, ArrayList<Model> selectList) throws JsonProcessingException {
+        System.out.println(location+"\n"+listItem+"\n");
         switch (location) {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {
@@ -282,21 +283,5 @@ public class Context {
             lonandlat.put("lon",null);
         }
         return lonandlat;
-    }
-}
-
-class LocationComparator implements Comparator<Model>{
-
-    private String word;
-
-    public LocationComparator(String word){
-        this.word=word;
-    }
-
-
-    @Override
-    public int compare(Model o1, Model o2) {
-        if(o1.getLocation().contains(word)) return -1;
-        return 0;
     }
 }

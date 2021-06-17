@@ -68,6 +68,7 @@ public class Service {
         ArrayList<Model> selectList =new ArrayList<>();
 
         if(listItem.size()!=0){
+            System.out.println(listItem);
             context.getLocation(location, listItem, selectList);
         }
 

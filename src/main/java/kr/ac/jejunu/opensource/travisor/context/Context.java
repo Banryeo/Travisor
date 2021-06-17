@@ -194,6 +194,7 @@ public class Context {
         String apiKey = "da584fb56166b922cf227ce5be613b37";
         String apiUrl = "https://dapi.kakao.com/v2/local/search/address.json";
         String jsonString = null;
+        BufferedReader rd = null;
 
         try {
             query = URLEncoder.encode(query, "UTF-8");
@@ -204,7 +205,6 @@ public class Context {
             URLConnection conn = url.openConnection();
             conn.setRequestProperty("Authorization", "KakaoAK " + apiKey);
 
-            BufferedReader rd = null;
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             StringBuffer docJson = new StringBuffer();
 
@@ -215,9 +215,12 @@ public class Context {
             }
 
             jsonString = docJson.toString();
-            rd.close();
 
-        } catch (UnsupportedEncodingException e) {
+
+        }finally {
+            try{
+                rd.close();
+            } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -225,6 +228,7 @@ public class Context {
             e.printStackTrace();
         }
         return jsonString;
+        }
     }
 
     public HashMap<String, Object>getNorthAndSouth(String geocodingString) throws JsonProcessingException {

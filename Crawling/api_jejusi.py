@@ -13,7 +13,7 @@ import xmltodict
 fileName = 'jejusi.json'
 file = open(fileName, 'w', encoding='utf-8')
 
-(/, https://www.data.go.kr/data/15002244/openapi.do)
+// https://www.data.go.kr/data/15002244/openapi.do
 apiUrl = '### api url ###'
 
 names_key = { 'edate': 'endDate',

@@ -69,8 +69,8 @@ public class Context {
         switch (location) {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {
-                    System.out.println(listItem.size()+":"+i);
-                    String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
+                    String locations=listItem.get(i).getLocation();
+                    String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(locations)).get("region_depth_name").toString();
                     if(!region_depth_name.equals("non")){
                         if(region_depth_name.equals("제주시")){
                             selectList.add(listItem.get(i));

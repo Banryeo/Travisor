@@ -71,7 +71,7 @@ public class Context {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {
                     String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
-                    if(region_depth_name!=null){
+                    if(!region_depth_name.equals("non")){
                         if(region_depth_name.equals("제주시")){
                             selectList.add(listItem.get(i));
                         }
@@ -82,7 +82,7 @@ public class Context {
             case "남쪽":
                 for (int i = 0; i < listItem.size(); i++) {
                     String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
-                    if(region_depth_name!=null){
+                    if(!region_depth_name.equals("non")){
                         if(region_depth_name.equals("서귀포시")){
                             selectList.add(listItem.get(i));
                         }
@@ -92,7 +92,7 @@ public class Context {
             case "동쪽":
                 for (int i = 0; i < listItem.size(); i++) {
                     String lon=getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString();
-                    if(lon!=null){
+                    if(!lon.equals("non")){
                         if (Double.parseDouble(lon) > 126.524841479094) {
                             selectList.add(listItem.get(i));
                         }
@@ -102,7 +102,7 @@ public class Context {
             case "서쪽":
                 for (int i = 0; i < listItem.size(); i++) {
                     String lon=getLonAndLat(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("lon").toString();
-                    if(lon!=null){
+                    if(!lon.equals("non")){
                         if (Double.parseDouble(lon) < 126.524841479094) {
                             selectList.add(listItem.get(i));
                         }
@@ -250,7 +250,7 @@ public class Context {
             lonandlat.put("region_depth_name",address.get("region_2depth_name"));
         }
         else{
-            lonandlat.put("region_depth_name",null);
+            lonandlat.put("region_depth_name","non");
         }
         return lonandlat;
     }
@@ -280,7 +280,7 @@ public class Context {
             System.out.println("x:"+documents.get(select).get("x")+"y:"+documents.get(select).get("y"));
         }
         else{
-            lonandlat.put("lon",null);
+            lonandlat.put("lon","non");
         }
         return lonandlat;
     }

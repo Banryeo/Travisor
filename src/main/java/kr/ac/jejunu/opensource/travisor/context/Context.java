@@ -231,6 +231,7 @@ public class Context {
 
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
+        System.out.println(mappingData);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
         for(int i=0;i<documents.size();i++){
             boolean adressName=documents.get(i).get("address_name").toString().contains("제주특별자치도");

@@ -66,7 +66,6 @@ public class Context {
 
 
     public ArrayList<Model> getLocation(String location, List<Model> listItem, ArrayList<Model> selectList) throws JsonProcessingException {
-        System.out.println(location+"\n"+listItem+"\n");
         switch (location) {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {

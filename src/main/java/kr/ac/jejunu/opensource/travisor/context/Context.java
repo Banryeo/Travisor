@@ -205,6 +205,7 @@ public class Context {
             URLConnection conn = url.openConnection();
             conn.setRequestProperty("Authorization", "KakaoAK " + apiKey);
 
+            System.out.println("실행");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             StringBuffer docJson = new StringBuffer();
 
@@ -215,6 +216,7 @@ public class Context {
             }
 
             jsonString = docJson.toString();
+            System.out.println("종료");
 
 
         }finally {

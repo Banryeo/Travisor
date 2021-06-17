@@ -12,6 +12,7 @@ import json
 fileName = 'seogwipo.json'
 file = open(fileName, 'w', encoding='utf-8')
 
+// https://www.data.go.kr/data/15065420/openapi.do
 apiUrl = '### api url ###'
 
 names_key = { 'end': 'endDate',

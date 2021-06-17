@@ -232,18 +232,20 @@ public class Context {
 
         mappingData = mapper.readValue(geocodingString, HashMap.class);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
-        for(int i=0;i<documents.size();i++){
-            HashMap<String, Object> address= (HashMap<String, Object>) documents.get(i).get("address");
+        HashMap<String, Object> address=new HashMap<>();
+        int select=0;
+        for(select=0;select<documents.size();select++){
+            address= (HashMap<String, Object>) documents.get(i).get("address");
             boolean adressName=address.get("address_name").toString().contains("제주특별자치도");
-            System.out.println(adressName);
+
             if(adressName){
-                documents.set(0,documents.get(i));
                 break;
             }
         }
         if (documents.size()!=0){
-            lonandlat.put("lon", documents.get(0).get("x"));
-            lonandlat.put("lat", documents.get(0).get("y"));
+            lonandlat.put("lon", documents.get(select).get("x"));
+            lonandlat.put("lat", documents.get(select).get("y"));
+            System.out.println("x:"+documents.get(select).get("x")+"y:"+documents.get(select).get("y"));
         }
         else{
             lonandlat.put("lon",null);

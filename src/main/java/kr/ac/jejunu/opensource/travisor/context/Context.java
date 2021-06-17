@@ -235,7 +235,7 @@ public class Context {
         HashMap<String, Object> address=new HashMap<>();
         int select=0;
         for(select=0;select<documents.size();select++){
-            address= (HashMap<String, Object>) documents.get(i).get("address");
+            address= (HashMap<String, Object>) documents.get(select).get("address");
             boolean adressName=address.get("address_name").toString().contains("제주특별자치도");
 
             if(adressName){

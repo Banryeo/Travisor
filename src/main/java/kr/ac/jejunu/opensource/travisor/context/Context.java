@@ -68,21 +68,22 @@ public class Context {
     public ArrayList<Model> getLocation(String location, List<Model> listItem, ArrayList<Model> selectList) throws JsonProcessingException {
         switch (location) {
             case "북쪽":
-                Collections.sort(listItem, new LocationComparator("제주시"));
                 for (int i = 0; i < listItem.size(); i++) {
-                    if (!listItem.get(i).getLocation().contains("제주시")) {
-                        break;
+                    if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name")!=null){
+                        if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").equals("제주시")){
+                            selectList.add(listItem.get(i));
+                        }
+
                     }
-                    selectList.add(listItem.get(i));
                 }
                 break;
             case "남쪽":
-                Collections.sort(listItem, new LocationComparator("서귀포시"));
                 for (int i = 0; i < listItem.size(); i++) {
-                    if (!listItem.get(i).getLocation().contains("서귀포시")) {
-                        break;
+                    if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name")!=null){
+                        if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").equals("서귀포시")){
+                            selectList.add(listItem.get(i));
+                        }
                     }
-                    selectList.add(listItem.get(i));
                 }
                 break;
             case "동쪽":
@@ -104,6 +105,7 @@ public class Context {
                 }
                 break;
         }
+        System.out.println(selectList);
         return selectList;
     }
 
@@ -222,6 +224,33 @@ public class Context {
         return jsonString;
     }
 
+    public HashMap<String, Object>getNorthAndSouth(String geocodingString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        HashMap<String, Object> mappingData = new HashMap<String, Object>();
+        HashMap<String, Object> lonandlat = new HashMap<String, Object>();
+        List<HashMap<String, Object>> documents = null;
+
+
+        mappingData = mapper.readValue(geocodingString, HashMap.class);
+        documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
+        HashMap<String, Object> address=new HashMap<>();
+        int select=0;
+        for(select=0;select<documents.size();select++){
+            address= (HashMap<String, Object>) documents.get(select).get("address");
+            boolean adressName=address.get("address_name").toString().contains("제주특별자치도");
+
+            if(adressName){
+                break;
+            }
+        }
+        if (documents.size()!=0){
+            lonandlat.put("region_depth_name",address.get("region_2depth_name"));
+        }
+        else{
+            lonandlat.put("region_depth_name",null);
+        }
+        return lonandlat;
+    }
 
     public HashMap<String, Object> getLonAndLat(String geocodingString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

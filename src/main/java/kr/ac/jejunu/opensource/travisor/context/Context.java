@@ -234,7 +234,8 @@ public class Context {
         System.out.println(mappingData);
         documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
         for(int i=0;i<documents.size();i++){
-            boolean adressName=documents.get(i).get("address_name").toString().contains("제주특별자치도");
+            HashMap<String, Object> address= (HashMap<String, Object>) documents.get(i).get("address");
+            boolean adressName=address.get("address_name").toString().contains("제주특별자치도");
             if(adressName){
                 documents.set(0,documents.get(i));
                 break;

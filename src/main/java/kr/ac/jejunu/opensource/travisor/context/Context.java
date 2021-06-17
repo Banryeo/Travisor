@@ -69,6 +69,7 @@ public class Context {
         switch (location) {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {
+                    System.out.println(listItem.size()+":"+i);
                     String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
                     if(!region_depth_name.equals("non")){
                         if(region_depth_name.equals("제주시")){
@@ -205,7 +206,6 @@ public class Context {
             URLConnection conn = url.openConnection();
             conn.setRequestProperty("Authorization", "KakaoAK " + apiKey);
 
-            System.out.println("실행");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             StringBuffer docJson = new StringBuffer();
 
@@ -216,7 +216,6 @@ public class Context {
             }
 
             jsonString = docJson.toString();
-            System.out.println("종료");
 
 
         }finally {

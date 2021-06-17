@@ -69,8 +69,9 @@ public class Context {
         switch (location) {
             case "북쪽":
                 for (int i = 0; i < listItem.size(); i++) {
-                    if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name")!=null){
-                        if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").equals("제주시")){
+                    String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
+                    if(region_depth_name!=null){
+                        if(region_depth_name.equals("제주시")){
                             selectList.add(listItem.get(i));
                         }
 
@@ -79,8 +80,9 @@ public class Context {
                 break;
             case "남쪽":
                 for (int i = 0; i < listItem.size(); i++) {
-                    if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name")!=null){
-                        if(getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").equals("서귀포시")){
+                    String region_depth_name=getNorthAndSouth(getKakaoApiGeocoding(listItem.get(i).getLocation())).get("region_depth_name").toString();
+                    if(region_depth_name!=null){
+                        if(region_depth_name.equals("서귀포시")){
                             selectList.add(listItem.get(i));
                         }
                     }
@@ -226,14 +228,12 @@ public class Context {
 
     public HashMap<String, Object>getNorthAndSouth(String geocodingString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        HashMap<String, Object> mappingData = new HashMap<String, Object>();
         HashMap<String, Object> lonandlat = new HashMap<String, Object>();
-        List<HashMap<String, Object>> documents = null;
 
-
-        mappingData = mapper.readValue(geocodingString, HashMap.class);
-        documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
         HashMap<String, Object> address=new HashMap<>();
+
+        HashMap<String, Object> mappingData = mapper.readValue(geocodingString, HashMap.class);
+        List<HashMap<String, Object>> documents = (ArrayList<HashMap<String, Object>>) mappingData.get("documents");
         int select=0;
         for(select=0;select<documents.size();select++){
             address= (HashMap<String, Object>) documents.get(select).get("address");
